@@ -7,8 +7,8 @@ index.html          kostra stránky
 css/style.css       vzhled (barvy jsou CSS proměnné nahoře v souboru)
 js/main.js          vykreslování, odpočet, výpočty (bilance, forma, střelci, H2H)
 data/team.json      data: tým, hráči, zápasy, tabulka, MVP, galerie
-assets/logo.png     logo (dodat), použije se i jako favicon a náhled při sdílení
-assets/favicon.svg  záložní favicon (zlatá kotva)
+assets/logo.png     logo (štít bez pozadí), použije se i jako náhled při sdílení
+assets/icon-512.png favicon (čtvercové logo)
 assets/players/     fotky hráčů
 assets/gallery/     fotky do galerie
 scripts/update.js   stažení aktuálních dat z PSMF
@@ -73,7 +73,27 @@ Skript stáhne profil týmu z PSMF a aktualizuje tabulku, výsledky (skóre, pol
 - u odehraného zápasu vyplň `score` `[domácí, hosté]`, `halftime`, `scorers` (`{ "player": "slug", "minute": 12 }`) a `report`,
 - přepiš `table` podle PSMF,
 - uprav `apps` a `goals` u hráčů,
-- změň `updated` a případně `mvp` (`match` je `id` zápasu, `player` je slug hráče).
+- změň `updated`.
+
+**Hráč posledního zápasu (MVP)** se vybírá sám: web vezme hráče, kterého PSMF u posledního zápasu označilo jako nejlepšího (`best` u zápasu, plní ho `update.js`). Pokud chceš vlastního hráče nebo vtipný komentář, vyplň `mvp`:
+```json
+"mvp": { "match": "r06", "player": "matej-hykrda", "text": "Krátký komentář." }
+```
+Platí jen pro zápas uvedený v `match`. Po dalším kole se web sám vrátí k výběru z PSMF.
+
+**Sestavy, kapitán, brankář a karty** se berou z PSMF (`lineup`, `captain`, `goalkeeper`, `cards` u zápasu). Ve výsledcích je rozbalovací sestava, v profilu hráče přehled jeho zápasů.
+
+**Chyba v zápisu na PSMF?** Neopravuj ji přímo u zápasu, `update.js` by ji při dalším běhu přepsal. Zapiš ji do `corrections` (klíčem je `id` zápasu). Opravy se použijí vždy až po stažení dat z PSMF:
+```json
+"corrections": {
+  "r04": { "goalkeeper": "vojtech-polacek" }
+}
+```
+Opravit jde jakékoli pole zápasu, třeba `best`, `captain`, `scorers` nebo `report`.
+
+**Minulá sezóna:** `update.js` uloží konečné umístění do `previousRecord` (z `team.previousPsmfUrl`). Web z něj sám napíše odznak v úvodu (např. „Vítěz skupiny 8I · bez porážky · postup do 7. ligy“) a řádek v bilanci.
+
+**Poznámka pod tabulkou** (bodování, o kolik zápasů má Kotva méně a kdy se dohrává odložené kolo) se počítá z dat. Do `tableNote` můžeš připsat vlastní text, který se přidá na konec.
 
 Bilanci, formu, Top 3 střelce, příští zápas, odpočet a Head2Head si web spočítá sám. Časy zápasů se zadávají v pražském čase (`"date": "2026-10-30", "time": "19:15"`) a přechod mezi letním a zimním časem se řeší automaticky.
 
@@ -88,6 +108,8 @@ Web běží na **https://kotikadam17.github.io/FCKotva/**. Workflow [.github/wor
 Když běh selže (např. PSMF změní vzhled stránek), GitHub pošle e-mail a web dál ukazuje poslední data.
 
 Jednorázové nastavení: **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+
+**Vyhledávače:** web má kanonickou adresu, strukturovaná data (`SportsTeam`), `sitemap.xml` a vlastní stránku `404.html`. Aby ho Google našel rychleji, přidej web v [Google Search Console](https://search.google.com/search-console) a zadej tam sitemapu `https://kotikadam17.github.io/FCKotva/sitemap.xml`. Soubor `robots.txt` u webu na GitHub Pages v podsložce nemá smysl, protože vyhledávače ho čtou jen z kořene domény.
 
 Když upravuješ `team.json` ručně, nejdřív si stáhni případné automatické změny (`git pull`), ať se nepřepíšou.
 

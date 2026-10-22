@@ -45,19 +45,20 @@
       "goals": 0,
       "previous": {
         "apps": 11,
-        "goals": 0
+        "goals": 0,
+        "conceded": 24
       }
     },
     {
       "slug": "ondrej-hejduk",
       "name": "Ondřej Hejduk",
       "short": "Hejduk",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 17,
+      "position": "Útočník",
+      "nickname": "Hejdukino",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@hejdukino",
       "bio": "",
       "apps": 3,
       "goals": 7,
@@ -112,7 +113,7 @@
       "age": null,
       "study": "",
       "instagram": "",
-      "bio": "Proti Beráncům chytal.",
+      "bio": "",
       "apps": 3,
       "goals": 3,
       "previous": {
@@ -142,12 +143,12 @@
       "slug": "michal-pihera",
       "name": "Michal Pihera",
       "short": "M. Pihera",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 26,
+      "position": "Útočník",
+      "nickname": "Pihy Jr",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@misapihera",
       "bio": "",
       "apps": 3,
       "goals": 1,
@@ -250,12 +251,12 @@
       "slug": "jan-zuzanek",
       "name": "Jan Zuzánek",
       "short": "Zuzánek",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 12,
+      "position": "Útočník",
+      "nickname": "Zuzič",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@honza_zuzanek",
       "bio": "",
       "apps": 1,
       "goals": 0,
@@ -301,7 +302,21 @@
           "minute": 60
         }
       ],
-      "report": "Velmi pěkné a slušné utkání. Drtivá převaha Kotvy, i když to výsledek úplně neukazuje."
+      "report": "Velmi pěkné a slušné utkání. Drtivá převaha Kotvy, i když to výsledek úplně neukazuje.",
+      "goalkeeper": "petr-pihera",
+      "best": "ondrej-hejduk",
+      "lineup": [
+        "petr-pihera",
+        "adam-boldis",
+        "ondrej-hejduk",
+        "matej-hykrda",
+        "ludek-imramovsky",
+        "adam-kotik",
+        "michal-pihera",
+        "martin-szanto"
+      ],
+      "captain": "michal-pihera",
+      "cards": []
     },
     {
       "id": "r03",
@@ -354,7 +369,21 @@
           "minute": 49
         }
       ],
-      "report": "Jasná převaha Kotvy. Mohla vyhrát ještě výrazněji."
+      "report": "Jasná převaha Kotvy. Mohla vyhrát ještě výrazněji.",
+      "goalkeeper": "petr-pihera",
+      "best": "adam-kotik",
+      "lineup": [
+        "petr-pihera",
+        "ondrej-hejduk",
+        "matej-hykrda",
+        "ludek-imramovsky",
+        "matyas-klapa",
+        "tomas-kollert",
+        "adam-kotik",
+        "michal-pihera"
+      ],
+      "captain": "ondrej-hejduk",
+      "cards": []
     },
     {
       "id": "r04",
@@ -411,7 +440,20 @@
           "minute": 57
         }
       ],
-      "report": "Gólové hody v Záběhlicích. Hejduk s hattrickem, Beránci jen snižovali."
+      "report": "Gólové hody v Záběhlicích. Hejduk s hattrickem, Beránci jen snižovali.",
+      "goalkeeper": "vojtech-polacek",
+      "best": "ondrej-hejduk",
+      "lineup": [
+        "tomas-kollert",
+        "ondrej-hejduk",
+        "matej-hykrda",
+        "ludek-imramovsky",
+        "adam-kotik",
+        "vojtech-polacek",
+        "lukas-rataj"
+      ],
+      "captain": "vojtech-polacek",
+      "cards": []
     },
     {
       "id": "r05",
@@ -452,7 +494,22 @@
           "minute": 55
         }
       ],
-      "report": "Kotva dominovala od začátku, Kotík byl u všech gólů."
+      "report": "Kotva dominovala od začátku, Kotík byl u všech gólů.",
+      "goalkeeper": "petr-pihera",
+      "best": "adam-kotik",
+      "lineup": [
+        "petr-pihera",
+        "adam-boldis",
+        "matej-hykrda",
+        "matyas-klapa",
+        "tomas-kollert",
+        "adam-kotik",
+        "michal-pihera",
+        "vojtech-polacek",
+        "jan-zuzanek"
+      ],
+      "captain": "adam-kotik",
+      "cards": []
     },
     {
       "id": "r06",
@@ -720,7 +777,34 @@
       "points": 1
     }
   ],
-  "tableNote": "V Hanspaulce je výhra za 2 body, remíza za 1. Kotva má o zápas méně – odložené 1. kolo s Interem Hostivař se dohrává 27. 11.",
+  "tableNote": "",
+  "champions": {
+    "title": "Vítěz skupiny 8I",
+    "season": "Jaro 2026",
+    "text": [
+      "Jaro 2026 se do klubové kroniky zapíše zlatým písmem. Kotva prošla skupinou 8I bez jediné porážky a z prvního místa si došla pro postup do 7. ligy.",
+      "Kritici tvrdili, že profesionálové hrají jen na Instagramu. Tabulka tvrdí něco jiného. Oslavy proběhly v duchu klubových hodnot: krátce na hřišti, dlouho v hospodě."
+    ],
+    "photos": [
+      {
+        "src": "assets/champions/01.jpg",
+        "caption": "Šampioni skupiny 8I – jaro 2026"
+      },
+      {
+        "src": "assets/champions/02.jpg",
+        "caption": "Poslední hvizd sezóny"
+      },
+      {
+        "src": "assets/champions/03.jpg",
+        "caption": "Oslavy (ta slušnější část)"
+      }
+    ]
+  },
+  "corrections": {
+    "r04": {
+      "goalkeeper": "vojtech-polacek"
+    }
+  },
   "mvp": {
     "match": "r05",
     "player": "adam-kotik",
@@ -741,7 +825,7 @@
     },
     {
       "src": "assets/gallery/04.jpg",
-      "caption": "Kollert v bráně proti Beráncům – univerzál k pohledání"
+      "caption": "Poláček v bráně proti Beráncům – univerzál k pohledání"
     },
     {
       "src": "assets/gallery/05.jpg",
@@ -751,5 +835,17 @@
       "src": "assets/gallery/06.jpg",
       "caption": "Páteční světla na Záběhlicích"
     }
-  ]
+  ],
+  "previousRecord": {
+    "place": 1,
+    "teams": 12,
+    "group": "8I",
+    "played": 11,
+    "won": 9,
+    "drawn": 2,
+    "lost": 0,
+    "gf": 57,
+    "ga": 24,
+    "points": 20
+  }
 }

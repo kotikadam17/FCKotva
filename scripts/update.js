@@ -7,8 +7,10 @@
  *   node scripts/update.js --out x.json   zapíše výsledek jinam
  *
  * Přepisuje: tabulku, výsledky (skóre, poločas, střelce Kotvy), program,
- * barvy dresů, zápasy a góly hráčů. Je-li vyplněné team.previousPsmfUrl,
- * doplní i statistiky z minulé sezóny (players[].previous).
+ * barvy dresů, zápasy a góly hráčů, sestavy (lineup, captain, goalkeeper),
+ * nejlepšího hráče zápasu (best) a karty (cards). Je-li vyplněné
+ * team.previousPsmfUrl, doplní i statistiky z minulé sezóny (players[].previous)
+ * a konečné umístění (previousRecord).
  * Zachovává: pozice, čísla, přezdívky, bio, vlastní popisy zápasů,
  * názvy kol (např. „1. kolo (odložené)“), galerii, MVP a texty webu.
  * Potřebuje Node 18+ (vestavěný fetch), žádné balíčky.
@@ -102,6 +104,32 @@ function parseResults(html) {
     const desc = ch.match(/<th>Popis zápasu<\/th>[\s\S]*?<td>([\s\S]*?)<\/td>/);
     const goalsRow = ch.match(/<th class="is-centered">Góly<\/th>[\s\S]*?<\/tr>\s*<tr>([\s\S]*?)<\/tr>/);
     const g = goalsRow ? cells(goalsRow[1]) : [];
+    // sestavy: "Petr Pihera – Adam Boldiš, Matěj Hykrda, …" (brankář před pomlčkou)
+    const lineupRow = ch.match(/has-smaller-text[\s\S]*?<\/tr>\s*<tr>([\s\S]*?)<\/tr>/);
+    const l = lineupRow ? cells(lineupRow[1]) : [];
+    const keeper = (cellHtml) => {
+      const t = cellHtml ? text(cellHtml) : '';
+      return t.includes('–') ? t.split('–')[0].trim() || null : null;
+    };
+    // nejlepší hráč zápasu: <span class="is-best"> nebo <span class="is-best-and-captain">
+    const best = (cellHtml) => {
+      const m = cellHtml && cellHtml.match(/class="is-best(?:-and-captain)?">([^<]+)</);
+      return m ? text(m[1]) : null;
+    };
+    // celá sestava (brankář první) a kapitán (<span class="is-captain"> / "is-best-and-captain")
+    const lineup = (cellHtml) => {
+      if (!cellHtml) return [];
+      const t = text(cellHtml);
+      const [gk, rest] = t.includes('–') ? [t.slice(0, t.indexOf('–')), t.slice(t.indexOf('–') + 1)] : ['', t];
+      return [gk, ...rest.split(',')].map((s) => s.trim()).filter(Boolean);
+    };
+    const captain = (cellHtml) => {
+      const m = cellHtml && cellHtml.match(/class="is-(?:best-and-)?captain">([^<]+)</);
+      return m ? text(m[1]) : null;
+    };
+    // karty: <span class="component__table-card is-yellow">34. Jméno</span>, oddělené <br />
+    const cards = (cellHtml) => (cellHtml ? [...cellHtml.matchAll(/component__table-card is-([a-z-]+)">([\s\S]*?)<\/span>/g)] : [])
+      .flatMap((m) => parseGoals(m[2]).map((c) => ({ ...c, type: m[1] })));
     return {
       date: parseDate(head[0]), time: text(head[1]), venue: text(head[2]),
       home, away, roundNo: parseInt(text(head[4]), 10),
@@ -109,6 +137,11 @@ function parseResults(html) {
       halftime: score[3] != null ? [+score[3], +score[4]] : null,
       homeGoals: g[0] ? parseGoals(g[0]) : [],
       awayGoals: g[3] ? parseGoals(g[3]) : [],
+      homeKeeper: keeper(l[0]), awayKeeper: keeper(l[2]),
+      homeBest: best(l[0]), awayBest: best(l[2]),
+      homeLineup: lineup(l[0]), awayLineup: lineup(l[2]),
+      homeCaptain: captain(l[0]), awayCaptain: captain(l[2]),
+      homeCards: cards(g[1]), awayCards: cards(g[4]),
       description: desc ? text(desc[1]) : ''
     };
   }).filter(Boolean);
@@ -180,7 +213,23 @@ function main(html, data) {
     m.halftime = r.halftime;
     const ours = r.home === us ? r.homeGoals : r.awayGoals;
     m.scorers = ours.map((g) => ({ player: slugFor(g.name), minute: g.minute })).sort((a, b) => a.minute - b.minute);
+    const keeper = r.home === us ? r.homeKeeper : r.awayKeeper;
+    m.goalkeeper = keeper ? slugFor(keeper) : null;
+    const best = r.home === us ? r.homeBest : r.awayBest;
+    m.best = best ? slugFor(best) : null;
+    const side = r.home === us ? 'home' : 'away';
+    m.lineup = r[side + 'Lineup'].map(slugFor);
+    m.captain = r[side + 'Captain'] ? slugFor(r[side + 'Captain']) : null;
+    m.cards = r[side + 'Cards'].map((c) => ({ player: slugFor(c.name), minute: c.minute, type: c.type }));
     if (!m.report && r.description) m.report = r.description;
+  });
+
+  // ruční opravy chyb v zápisech PSMF (team.json → corrections), mají vždy přednost:
+  // "corrections": { "r04": { "goalkeeper": "vojtech-polacek" } }
+  Object.entries(data.corrections || {}).forEach(([id, fix]) => {
+    const m = data.matches.find((x) => x.id === id);
+    if (m) Object.assign(m, fix);
+    else log.push(`! oprava pro neznámý zápas „${id}“`);
   });
 
   data.matches.sort((a, b) => (a.date + a.time).localeCompare(b.date + b.time));
@@ -193,15 +242,38 @@ function main(html, data) {
 }
 
 // Minulá sezóna (team.previousPsmfUrl): doplní hráčům previous.apps / previous.goals
+// a brankářům previous.conceded (obdržené góly v zápasech, kde chytali)
 function applyPrevious(html, data) {
   const log = [];
+  const us = data.team.psmfName;
+  const conceded = {};
+  parseResults(html).forEach((r) => {
+    const home = r.home === us;
+    const keeper = home ? r.homeKeeper : r.awayKeeper;
+    if (keeper) conceded[tokens(keeper)] = (conceded[tokens(keeper)] || 0) + (home ? r.score[1] : r.score[0]);
+  });
   parseStats(html).forEach((s) => {
     const p = data.players.find((x) => tokens(x.name) === tokens(s.psmfName));
     if (!p) return;
     const prev = p.previous || {};
-    if (prev.apps !== s.apps || prev.goals !== s.goals) log.push(`~ ${p.name} (minulá sezóna): ${s.apps}/${s.goals}`);
+    const ga = conceded[tokens(p.name)];
+    if (prev.apps !== s.apps || prev.goals !== s.goals || prev.conceded !== ga) {
+      log.push(`~ ${p.name} (minulá sezóna): ${s.apps}/${s.goals}${ga != null ? `, obdržel ${ga}` : ''}`);
+    }
     p.previous = { apps: s.apps, goals: s.goals };
+    if (ga != null) p.previous.conceded = ga;
   });
+
+  // konečné umístění Kotvy v minulé sezóně (web z něj napíše např. „Vítěz skupiny 8I · bez porážky“)
+  const table = parseTable(html);
+  const i = table.findIndex((r) => r.team === us);
+  if (i >= 0) {
+    const label = (html.match(/<h2 class="component__label">[^<]*,\s*([^<]+)<\/h2>/) || [])[1];
+    const rec = { place: i + 1, teams: table.length, group: label ? text(label) : null, ...table[i] };
+    delete rec.team;
+    if (JSON.stringify(rec) !== JSON.stringify(data.previousRecord)) log.push(`~ minulá sezóna: ${rec.place}. místo z ${rec.teams}`);
+    data.previousRecord = rec;
+  }
   return log;
 }
 

@@ -16,7 +16,7 @@
     'černá': '#111111', 'bílá': '#FFFFFF', 'modrá': '#1F4FD1', 'světle modrá': '#6CB4EE',
     'tmavě modrá': '#14275E', 'oranžová': '#F28C28', 'růžová': '#F49AC1', 'vínová': '#7A1F2B',
     'červená': '#D7262E', 'zelená': '#1E9E4A', 'žlutá': '#F5D000', 'šedá': '#8A8A8A',
-    'zlatá': '#C9A44C', 'fialová': '#6B3FA0', 'hnědá': '#6B4423', 'tyrkysová': '#1CB5B0'
+    'zlatá': '#F2C12E', 'fialová': '#6B3FA0', 'hnědá': '#6B4423', 'tyrkysová': '#1CB5B0'
   };
 
   let D = null;              // načtená data
@@ -149,7 +149,7 @@
         box.innerHTML = ANCHOR_SVG;
         break;
       case 'initials':
-        box.textContent = img.dataset.initials || '';
+        img.remove(); // iniciály pod fotkou jsou vidět od začátku
         break;
       case 'photo': {
         const ph = document.createElement('div');
@@ -157,20 +157,25 @@
         ph.style.aspectRatio = img.dataset.ratio || '4 / 3';
         ph.setAttribute('role', 'img');
         ph.setAttribute('aria-label', (img.alt || 'Fotka') + ' (fotka zatím chybí)');
-        ph.innerHTML = ANCHOR_SVG;
+        ph.innerHTML = '<img src="assets/logo.png" alt="" aria-hidden="true">';
         img.replaceWith(ph);
         break;
       }
     }
   }, true);
 
+  // fotku hráče ukázat až po načtení (jinak by během načítání probleskla ikona rozbitého obrázku)
+  document.addEventListener('load', (e) => {
+    if (e.target instanceof HTMLImageElement && e.target.dataset.fallback === 'initials') e.target.classList.add('is-loaded');
+  }, true);
+
   function logoHtml(alt) {
     return `<img src="assets/logo.png" alt="${esc(alt)}" data-fallback="logo">`;
   }
 
-  // fotka z assets/players/<slug>.jpg, když chybí -> iniciály
+  // iniciály jsou vždy pod fotkou; fotka z assets/players/<slug>.jpg je překryje, až se načte
   function photoHtml(p, cls, alt = '') {
-    return `<span class="${cls}"><img src="assets/players/${esc(p.slug)}.jpg" alt="${esc(alt)}" loading="lazy" data-fallback="initials" data-initials="${esc(initials(p.name))}"></span>`;
+    return `<span class="${cls}"><span class="initials" aria-hidden="true">${esc(initials(p.name))}</span><img src="assets/players/${esc(p.slug)}.jpg" alt="${esc(alt)}" loading="lazy" data-fallback="initials"></span>`;
   }
   const avatarHtml = (p, cls, alt = '') => photoHtml(p, `avatar ${cls || ''}`, alt);
 
@@ -233,16 +238,29 @@
   function initNav() {
     const toggle = $('.nav__toggle');
     const menu = $('#nav-menu');
+    const isOpen = () => menu.classList.contains('is-open');
     const setOpen = (open) => {
       toggle.setAttribute('aria-expanded', String(open));
       $('.sr-only', toggle).textContent = open ? 'Zavřít menu' : 'Otevřít menu';
       menu.classList.toggle('is-open', open);
+      document.documentElement.classList.toggle('menu-open', open); // zamkne scroll stránky pod menu
     };
-    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+    toggle.addEventListener('click', () => setOpen(!isOpen()));
     menu.addEventListener('click', (e) => { if (e.target.closest('a')) setOpen(false); });
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && menu.classList.contains('is-open')) { setOpen(false); toggle.focus(); }
+      if (!isOpen()) return;
+      if (e.key === 'Escape') { setOpen(false); toggle.focus(); return; }
+      // Tab koluje jen mezi tlačítkem menu a odkazy v něm
+      if (e.key === 'Tab') {
+        const items = [toggle, ...$$('a', menu)];
+        const i = items.indexOf(document.activeElement);
+        const next = e.shiftKey ? (i <= 0 ? items.length - 1 : i - 1) : (i === -1 || i === items.length - 1 ? 0 : i + 1);
+        e.preventDefault();
+        items[next].focus();
+      }
     });
+    // po roztažení na desktop menu zavřít (jinak by zůstal zamčený scroll)
+    window.matchMedia('(min-width: 960px)').addEventListener('change', (mq) => { if (mq.matches && isOpen()) setOpen(false); });
 
     // zvýraznění aktivní sekce
     if (!('IntersectionObserver' in window)) return;
@@ -262,6 +280,28 @@
 
   // ---------- Texty a odkazy ----------
 
+  // Poznámka pod tabulkou: bodování + kolik zápasů má Kotva k dobru (počítá se z tabulky),
+  // případně doplněná o vlastní text z team.json (tableNote)
+  function tableNote() {
+    const rows = D.table || [];
+    const us = rows.find((r) => isUs(r.team));
+    const parts = ['V Hanspaulce je výhra za 2 body, remíza za 1.'];
+    if (us) {
+      const behind = Math.max(...rows.map((r) => r.played)) - us.played;
+      if (behind > 0) {
+        let s = `Kotva má o ${behind === 1 ? 'zápas' : behind + ' ' + plural(behind, 'zápas', 'zápasy', 'zápasů')} méně`;
+        const postponed = upcomingMatches().find((v) => /odlož/i.test(v.m.round));
+        if (postponed) {
+          const [, mo, d] = postponed.m.date.split('-').map(Number);
+          s += ` – odložené ${postponed.m.round.replace(/\s*\(.*\)/, '')} proti týmu ${postponed.opponent} se dohrává ${d}. ${mo}.`;
+        } else s += '.';
+        parts.push(s);
+      }
+    }
+    if (D.tableNote) parts.push(D.tableNote);
+    return parts.join(' ');
+  }
+
   function renderBindings() {
     const t = D.team;
     const ig = D.instagram;
@@ -270,7 +310,7 @@
       leagueLine: `${t.league} · ${t.division} · skupina ${t.group.replace(/^\d+/, '')} · ${t.season}`,
       intro: t.intro,
       group: t.group,
-      tableNote: D.tableNote,
+      tableNote: tableNote(),
       igHandle: ig.handle,
       footerLine: `${t.league} · ${t.group} · ${t.season}`,
       footerQuip: t.footerQuip,
@@ -308,8 +348,6 @@
         $('#h2h').innerHTML = '';
       } else {
         box.innerHTML = matchdayHtml(v, live);
-        const btn = $('[data-ics]', box);
-        if (btn) btn.addEventListener('click', () => downloadIcs(v));
         renderH2H(v);
       }
       renderFixtures(now);
@@ -334,52 +372,13 @@
       <ul class="matchday__meta">
         <li>${icon('calendar')} ${esc(formatDate(m.date))}, ${esc(m.time)}</li>
         <li>${icon('pin')} Hřiště <a href="https://www.psmf.cz/hriste/#${encodeURIComponent(m.venue)}" target="_blank" rel="noopener">${esc(m.venue)}</a></li>
-      </ul>
-      ${live ? '' : `<div class="matchday__actions"><button class="btn btn--gold" type="button" data-ics>${icon('calendar')} Přidat do kalendáře</button></div>`}`;
+      </ul>`;
   }
 
   function updateCountdown(diff) {
     const s = Math.max(0, Math.floor(diff / 1000));
     const parts = [Math.floor(s / 86400), Math.floor(s / 3600) % 24, Math.floor(s / 60) % 60, s % 60];
     $$('[data-cd]').forEach((n) => { n.textContent = String(parts[n.dataset.cd]).padStart(2, '0'); });
-  }
-
-  function downloadIcs(v) {
-    const m = v.m;
-    const stamp = (d) => d.toISOString().replace(/[-:]/g, '').replace(/\.\d{3}/, '');
-    const text = (s) => String(s).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\n/g, '\\n');
-    const venueUrl = `https://www.psmf.cz/hriste/#${m.venue}`;
-    const ics = [
-      'BEGIN:VCALENDAR',
-      'VERSION:2.0',
-      'PRODID:-//FC Kotva//Web//CS',
-      'CALSCALE:GREGORIAN',
-      'METHOD:PUBLISH',
-      'BEGIN:VEVENT',
-      `UID:${m.id}-${m.date}@fc-kotva`,
-      `DTSTAMP:${stamp(new Date())}`,
-      `DTSTART:${stamp(v.start)}`,
-      `DTEND:${stamp(v.end)}`,
-      `SUMMARY:${text(`⚽ ${m.home} – ${m.away}`)}`,
-      `LOCATION:${text(`Hřiště ${m.venue} (PSMF)`)}`,
-      `DESCRIPTION:${text(`${D.team.league}, ${D.team.group}, ${m.round}.\nHřiště: ${venueUrl}\nJdeme si pro postup! ⚓`)}`,
-      `URL:${venueUrl}`,
-      'BEGIN:VALARM',
-      'TRIGGER:-PT2H',
-      'ACTION:DISPLAY',
-      'DESCRIPTION:Zápas FC Kotva za 2 hodiny',
-      'END:VALARM',
-      'END:VEVENT',
-      'END:VCALENDAR'
-    ].join('\r\n');
-    const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `fc-kotva-${m.id}.ics`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 
   // ---------- Head2Head ----------
@@ -423,6 +422,56 @@
   }
 
   // ---------- Bilance + forma ----------
+
+  // ---------- Šampioni – sekce o úspěchu z minulé sezóny ----------
+  // text a fotky: team.json → champions; čísla: previousRecord (plní scripts/update.js)
+
+  function renderChampions() {
+    const c = D.champions;
+    const section = $('#sampioni');
+    const navLink = $('.nav__menu a[href="#sampioni"]');
+    if (!c) { section.hidden = true; if (navLink) navLink.parentElement.hidden = true; return; }
+
+    const r = D.previousRecord;
+    const photos = (c.photos || []).slice(0, 3);
+    // postup = minule nižší liga (8I) než teď (7I)
+    const promoted = r && r.group && parseInt(r.group, 10) > parseInt(D.team.group, 10);
+    const badges = [
+      r && r.played > 0 && r.lost === 0 ? 'Bez porážky' : '',
+      promoted ? `Postup do ${D.team.division.replace(/liga$/, 'ligy')} ⬆` : ''
+    ].filter(Boolean);
+    const paragraphs = Array.isArray(c.text) ? c.text : [c.text || ''];
+
+    $('#champions-season').textContent = c.season || D.team.previousSeason || '';
+    $('#champions').innerHTML = `
+      <div class="champs__photos">
+        ${photos.map((g, i) => `
+          <button class="champs__photo champs__photo--${i + 1}" type="button" data-index="${i}" aria-haspopup="dialog" aria-label="Zvětšit fotku: ${esc(g.caption)}">
+            <img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy" data-fallback="photo">
+            ${g.caption ? `<span class="gallery__cap" aria-hidden="true">${esc(g.caption)}</span>` : ''}
+          </button>`).join('')}
+      </div>
+      <div class="champs__body">
+        <div class="champs__story">
+          <p class="champs__title">🏆 ${esc(c.title)}</p>
+          ${badges.length ? `<ul class="champs__badges">${badges.map((b) => `<li>${esc(b)}</li>`).join('')}</ul>` : ''}
+          ${paragraphs.filter(Boolean).map((p) => `<p class="champs__text">${esc(p)}</p>`).join('')}
+        </div>
+        ${r ? `
+        <dl class="champs__stats">
+          <div class="champs__stat--big"><dt>Umístění</dt><dd><span data-count="${r.place}">${r.place}</span>.<small> z ${r.teams}</small></dd></div>
+          <div><dt>Zápasy</dt><dd data-count="${r.played}">${r.played}</dd></div>
+          <div><dt>V–R–P</dt><dd>${r.won}–${r.drawn}–${r.lost}</dd></div>
+          <div><dt>Skóre</dt><dd>${r.gf}:${r.ga}</dd></div>
+          <div><dt>Body</dt><dd data-count="${r.points}">${r.points}</dd></div>
+        </dl>` : ''}
+      </div>`;
+
+    $('#champions').addEventListener('click', (e) => {
+      const item = e.target.closest('[data-index]');
+      if (item) openLightbox(photos, Number(item.dataset.index));
+    });
+  }
 
   function renderStats() {
     const played = playedMatches();
@@ -494,17 +543,16 @@
 
   // ---------- Hráči – společné prvky ----------
 
-  const POS_SHORT = { 'brankář': 'BR', 'obránce': 'OBR', 'záložník': 'ZÁL', 'útočník': 'ÚT', 'univerzál': 'UNI' };
-  const posShort = (pos) => (pos ? POS_SHORT[pos.toLowerCase()] || pos.slice(0, 3).toUpperCase() : '');
   const hasValue = (x) => x !== null && x !== undefined && x !== '';
   const placeholder = (txt = 'doplníme') => `<span class="ph-text">${txt}</span>`;
   const perMatch = (goals, apps) => (apps ? (goals / apps).toFixed(2).replace('.', ',') : '–');
 
   // jméno ve dvou řádcích: malé křestní, velké příjmení
+  // (mezera mezi spany je kvůli čtečkám – ve flexu se vizuálně neprojeví)
   function nameHtml(p) {
     const parts = p.name.split(' ');
     const last = parts.pop();
-    return `<span class="pname"><span class="pname__first">${esc(parts.join(' '))}</span><span class="pname__last">${esc(last)}</span></span>`;
+    return `<span class="pname"><span class="pname__first">${esc(parts.join(' '))}</span> <span class="pname__last">${esc(last)}</span></span>`;
   }
 
   function igUrl(value) {
@@ -517,9 +565,13 @@
     return '@' + (m ? m[1] : String(value).replace(/^@/, ''));
   }
 
+  const isKeeper = (p) => /brank/i.test(p.position);
+  // obdržené góly v zápasech, kde hráč chytal (match.goalkeeper)
+  const conceded = (p) => playedMatches().filter((v) => v.m.goalkeeper === p.slug).reduce((sum, v) => sum + v.ga, 0);
+
   // pořadí hráčů v kádru (brankáři první, pak podle gólů)
   function squadOrder() {
-    const gk = (p) => (/brank/i.test(p.position) ? 0 : 1);
+    const gk = (p) => (isKeeper(p) ? 0 : 1);
     return D.players.slice().sort((a, b) => gk(a) - gk(b) || b.goals - a.goals || a.name.localeCompare(b.name, 'cs'));
   }
 
@@ -588,17 +640,12 @@
     $('#squad').innerHTML = squadOrder().map((p) => `
       <button class="fut" type="button" data-player="${esc(p.slug)}" aria-haspopup="dialog" aria-label="Profil hráče ${esc(p.name)}">
         ${photoHtml(p, 'fut__photo photo')}
-        <span class="fut__badge">
-          <span class="fut__num">${hasValue(p.number) ? esc(p.number) : '–'}</span>
-          ${posShort(p.position) ? `<span class="fut__pos">${esc(posShort(p.position))}</span>` : ''}
-        </span>
         <span class="fut__body">
-          ${nameHtml(p)}
-          <span class="fut__stats">
-            <span><b>${p.apps}</b><small>Záp</small></span>
-            <span><b>${p.goals}</b><small>Gól</small></span>
-            <span><b>${hasValue(p.age) ? esc(p.age) : '–'}</b><small>Věk</small></span>
+          <span class="fut__id">
+            ${nameHtml(p)}
+            ${p.position ? `<span class="fut__pos">${esc(p.position)}</span>` : ''}
           </span>
+          <span class="fut__num">${hasValue(p.number) ? esc(p.number) : '–'}</span>
         </span>
         <span class="fut__more" aria-hidden="true">Profil ${icon('chevron')}</span>
       </button>`).join('');
@@ -613,18 +660,31 @@
     const prev = p.previous || {};
     const ig = igUrl(p.instagram);
 
-    // ve kterých zápasech dal gól
-    const goalLog = playedMatches().map((v) => ({
-      v, minutes: (v.m.scorers || []).filter((s) => s.player === slug).map((s) => s.minute).sort((a, b) => a - b)
-    })).filter((x) => x.minutes.length);
+    // odehrané zápasy (podle sestav z PSMF; u starších dat bez sestavy aspoň ty, kde skóroval)
+    const matchLog = playedMatches().filter((v) => (v.m.lineup || []).includes(slug) || (v.m.scorers || []).some((s) => s.player === slug))
+      .map((v) => ({
+        v,
+        minutes: (v.m.scorers || []).filter((s) => s.player === slug).map((s) => s.minute).sort((a, b) => a - b),
+        cards: (v.m.cards || []).filter((c) => c.player === slug)
+      })).reverse();
+    const count = (key) => matchLog.filter((x) => x.v.m[key] === slug).length;
+    const nCards = matchLog.reduce((s, x) => s + x.cards.length, 0);
+    const honours = [
+      [count('best'), '⭐', `hráč zápasu ${count('best')}×`],
+      [count('captain'), 'C', `kapitán ${count('captain')}×`],
+      [nCards, '🟨', `${nCards} ${plural(nCards, 'karta', 'karty', 'karet')}`]
+    ].filter(([n]) => n > 0);
 
+    // u brankáře místo vstřelených gólů obdržené
+    const keeper = isKeeper(p);
+    const [goalsLabel, perLabel] = keeper ? ['Obdržené', 'O/Z'] : ['Góly', 'G/Z'];
     const seasonBox = (title, apps, goals, now) => `
       <div class="season${now ? ' season--now' : ''}">
         <h3 class="season__title">${esc(title)}</h3>
         <dl class="season__stats">
           <div><dt>Zápasy</dt><dd>${hasValue(apps) ? apps : '–'}</dd></div>
-          <div><dt>Góly</dt><dd>${hasValue(goals) ? goals : '–'}</dd></div>
-          <div><dt>G/Z</dt><dd>${hasValue(apps) && hasValue(goals) ? perMatch(goals, apps) : '–'}</dd></div>
+          <div><dt>${goalsLabel}</dt><dd>${hasValue(goals) ? goals : '–'}</dd></div>
+          <div><dt>${perLabel}</dt><dd>${hasValue(apps) && hasValue(goals) ? perMatch(goals, apps) : '–'}</dd></div>
         </dl>
       </div>`;
 
@@ -643,10 +703,8 @@
         </header>
 
         <dl class="profile__facts">
-          <div><dt>Věk</dt><dd>${hasValue(p.age) ? esc(p.age) + ' let' : placeholder()}</dd></div>
-          <div><dt>Studuje</dt><dd>${p.study ? esc(p.study) : placeholder()}</dd></div>
           <div class="profile__ig"><dt>Instagram</dt><dd>${ig
-            ? `<a href="${esc(ig)}" target="_blank" rel="noopener">${icon('instagram')} ${esc(igHandle(p.instagram))}</a>`
+            ? `<a href="${esc(ig)}" target="_blank" rel="noopener">${avatarHtml(p, 'profile__ig-avatar')} ${esc(igHandle(p.instagram))} ${icon('instagram')}</a>`
             : placeholder()}</dd></div>
         </dl>
 
@@ -658,18 +716,32 @@
         <section class="profile__section">
           <h3 class="profile__h">Statistiky</h3>
           <div class="profile__seasons">
-            ${seasonBox(D.team.season, p.apps, p.goals, true)}
-            ${seasonBox(D.team.previousSeason || 'Minulá sezóna', prev.apps, prev.goals, false)}
+            ${seasonBox(D.team.season, p.apps, keeper ? conceded(p) : p.goals, true)}
+            ${seasonBox(D.team.previousSeason || 'Minulá sezóna', prev.apps, keeper ? prev.conceded : prev.goals, false)}
           </div>
         </section>
 
-        ${goalLog.length ? `
+          ${honours.length ? `<ul class="profile__honours">${honours.map(([n, ico, label]) =>
+            `<li><span aria-hidden="true">${ico}</span> ${label}</li>`).join('')}</ul>` : ''}
+
+        ${matchLog.length ? `
         <section class="profile__section">
-          <h3 class="profile__h">Góly v této sezóně</h3>
+          <h3 class="profile__h">Zápasy v této sezóně</h3>
           <ul class="profile__goals">
-            ${goalLog.map(({ v, minutes }) => `
-              <li><span>${esc(v.home ? 'vs' : '@')} ${esc(v.opponent)} <small>${esc(formatDate(v.m.date, false))}</small></span>
-                  <span class="profile__min">${'⚽'.repeat(minutes.length)} ${minutes.map((x) => x + '′').join(', ')}</span></li>`).join('')}
+            ${matchLog.map(({ v, minutes, cards }) => `
+              <li>
+                <span class="profile__match">
+                  <span class="dot dot--sm dot--${v.outcome}" title="${OUTCOME[v.outcome].long}"><span aria-hidden="true">${OUTCOME[v.outcome].short}</span><span class="sr-only">${OUTCOME[v.outcome].long}</span></span>
+                  <span>${esc(v.home ? 'vs' : '@')} ${esc(v.opponent)} <b>${v.gf}:${v.ga}</b> <small>${esc(formatDate(v.m.date, false))}</small></span>
+                </span>
+                <span class="profile__min">
+                  ${minutes.length ? `<span>⚽ ${minutes.map((x) => x + '′').join(', ')}</span>` : ''}
+                  ${v.m.goalkeeper === slug ? `<span title="obdržené góly">🧤 ${v.ga}</span>` : ''}
+                  ${cards.map((c) => `<span title="${CARD[c.type] ? CARD[c.type].label : 'karta'}">${CARD[c.type] ? CARD[c.type].icon : '🟨'} ${c.minute}′</span>`).join('')}
+                  ${v.m.captain === slug ? '<span class="role role--c" title="kapitán">C</span>' : ''}
+                  ${v.m.best === slug ? '<span title="nejlepší hráč zápasu">⭐</span>' : ''}
+                </span>
+              </li>`).join('')}
           </ul>
         </section>` : ''}
       </div>`;
@@ -692,6 +764,38 @@
     return p ? (p.short || p.name) : s.player;
   }
 
+  const CARD = {
+    yellow: { icon: '🟨', label: 'žlutá karta' },
+    red: { icon: '🟥', label: 'červená karta' },
+    'yellow-red': { icon: '🟨🟥', label: 'druhá žlutá a červená karta' }
+  };
+
+  // značky hráče v zápase: brankář, kapitán, nejlepší hráč (z PSMF, plní scripts/update.js)
+  function roleBadges(m, slug) {
+    return [
+      m.goalkeeper === slug ? '<span class="role" title="brankář">🧤<span class="sr-only"> brankář</span></span>' : '',
+      m.captain === slug ? '<span class="role role--c" title="kapitán"><span aria-hidden="true">C</span><span class="sr-only"> kapitán</span></span>' : '',
+      m.best === slug ? '<span class="role" title="nejlepší hráč zápasu">⭐<span class="sr-only"> nejlepší hráč zápasu</span></span>' : ''
+    ].join('');
+  }
+
+  function lineupHtml(m) {
+    // brankář vždy první (i když je opravený přes corrections a PSMF má v sestavě na začátku někoho jiného)
+    const lineup = (m.lineup || []).slice().sort((a, b) => (b === m.goalkeeper) - (a === m.goalkeeper));
+    if (!lineup.length) return '';
+    return `
+      <details class="result__lineup">
+        <summary>Sestava Kotvy <span class="result__lineup-n">(${lineup.length})</span></summary>
+        <ul class="lineup">
+          ${lineup.map((s) => {
+            const p = playersBySlug[s];
+            if (!p) return `<li class="lineup__guest">${esc(s)}</li>`;
+            return `<li><button class="chip-player" type="button" data-player="${esc(s)}" aria-haspopup="dialog">${esc(p.short || p.name)}${roleBadges(m, s)}</button></li>`;
+          }).join('')}
+        </ul>
+      </details>`;
+  }
+
   function renderResults() {
     const played = playedMatches().reverse();
     $('#results').innerHTML = played.map((v) => {
@@ -711,7 +815,7 @@
       return `
         <article class="result" aria-label="${esc(m.home)} ${m.score[0]}:${m.score[1]} ${esc(m.away)}">
           <header class="result__head">
-            <h3 class="display result__ft">Full <span class="gold-text">time</span></h3>
+            <h3 class="display result__ft">Full <span class="gold-text">time</span><span class="sr-only">: ${esc(m.home)} ${m.score[0]}:${m.score[1]} ${esc(m.away)}</span></h3>
             <span class="result__badge result__badge--${v.outcome}">${OUTCOME[v.outcome].long}</span>
           </header>
           <div class="sb">
@@ -728,25 +832,35 @@
             <li><button class="chip-player" type="button" data-player="${esc(g.player)}" aria-haspopup="dialog">
               <span aria-hidden="true">⚽</span> ${esc(scorerLabel(g))} <span class="chip-player__min">${g.minutes.map((x) => x + '′').join(', ')}</span>${g.minutes.length >= 3 ? ' <span title="hattrick">🎩</span>' : ''}
             </button></li>`).join('')}</ul>` : ''}
+          ${(m.cards || []).length ? `<ul class="result__scorers" aria-label="Karty Kotvy">${m.cards.map((c) => `
+            <li><button class="chip-player" type="button" data-player="${esc(c.player)}" aria-haspopup="dialog">
+              <span aria-hidden="true">${CARD[c.type] ? CARD[c.type].icon : '🟨'}</span> ${esc(scorerLabel(c))} <span class="chip-player__min">${c.minute}′</span><span class="sr-only"> – ${CARD[c.type] ? CARD[c.type].label : 'karta'}</span>
+            </button></li>`).join('')}</ul>` : ''}
           ${m.report ? `<p class="result__report">${esc(m.report)}</p>` : ''}
+          ${lineupHtml(m)}
         </article>`;
     }).join('') || '<p class="empty">Zatím žádný odehraný zápas.</p>';
   }
 
+  // MVP posledního odehraného zápasu: ruční výběr z team.json (mvp), pokud patří k poslednímu
+  // zápasu; jinak nejlepší hráč podle PSMF (matches[].best, plní scripts/update.js)
   function renderMvp() {
-    const mvp = D.mvp;
     const box = $('#mvp');
-    const p = mvp && playersBySlug[mvp.player];
+    const last = playedMatches().pop();
+    if (!last) { box.innerHTML = ''; return; }
+    const m = last.m;
+    const manual = D.mvp && D.mvp.match === m.id ? D.mvp : null;
+    const p = playersBySlug[manual ? manual.player : m.best];
     if (!p) { box.innerHTML = ''; return; }
-    const m = D.matches.find((x) => x.id === mvp.match);
-    const vs = m ? ` · ${isUs(m.home) ? m.away : m.home} ${m.score ? m.score.join(':') : ''}` : '';
+    const text = manual && manual.text;
+    const vs = ` · ${last.gf}:${last.ga} vs ${last.opponent}`;
     box.innerHTML = `
       <button class="mvp__btn" type="button" data-player="${esc(p.slug)}" aria-haspopup="dialog">
         ${avatarHtml(p, '')}
         <span class="mvp__body">
           <span class="mvp__tag">🏆 Hráč posledního zápasu${esc(vs)}</span>
           <span class="mvp__name">${esc(p.name)}</span>
-          ${mvp.text ? `<span class="mvp__text">${esc(mvp.text)}</span>` : ''}
+          ${text ? `<span class="mvp__text">${esc(text)}</span>` : ''}
         </span>
       </button>`;
   }
@@ -789,29 +903,37 @@
         <span class="gallery__cap" aria-hidden="true">${esc(g.caption)}</span>
       </button>`).join('') || '<p class="empty">Fotky brzy přibudou.</p>';
 
-    const lb = $('#lightbox');
-    const media = $('#lightbox-media');
-    const cap = $('#lightbox-caption');
-    let index = 0;
-
-    const show = (i) => {
-      index = (i + items.length) % items.length;
-      const g = items[index];
-      media.innerHTML = `<img src="${esc(g.src)}" alt="${esc(g.caption)}" data-fallback="photo" data-ratio="4 / 3">`;
-      cap.innerHTML = `${esc(g.caption)}<small>${index + 1} / ${items.length}</small>`;
-    };
-
     box.addEventListener('click', (e) => {
       const item = e.target.closest('[data-index]');
-      if (!item) return;
-      show(Number(item.dataset.index));
-      lb.showModal();
+      if (item) openLightbox(items, Number(item.dataset.index));
     });
-    $('[data-prev]', lb).addEventListener('click', () => show(index - 1));
-    $('[data-next]', lb).addEventListener('click', () => show(index + 1));
+  }
+
+  // Lightbox je společný pro galerii i sekci šampionů – zobrazuje vždy sadu fotek, ze které byl otevřen.
+  let lbItems = [];
+  let lbIndex = 0;
+
+  function showLightbox(i) {
+    lbIndex = (i + lbItems.length) % lbItems.length;
+    const g = lbItems[lbIndex];
+    $('#lightbox-media').innerHTML = `<img src="${esc(g.src)}" alt="${esc(g.caption)}" data-fallback="photo" data-ratio="4 / 3">`;
+    $('#lightbox-caption').innerHTML = `${esc(g.caption)}<small>${lbIndex + 1} / ${lbItems.length}</small>`;
+  }
+
+  function openLightbox(items, i) {
+    lbItems = items;
+    showLightbox(i);
+    $('#lightbox').showModal();
+  }
+
+  function initLightbox() {
+    const lb = $('#lightbox');
+    const show = (i) => showLightbox(i);
+    $('[data-prev]', lb).addEventListener('click', () => show(lbIndex - 1));
+    $('[data-next]', lb).addEventListener('click', () => show(lbIndex + 1));
     lb.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); show(index - 1); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); show(index + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(lbIndex - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(lbIndex + 1); }
     });
 
     let touchX = null, touchY = null;
@@ -820,7 +942,7 @@
       if (touchX == null) return;
       const dx = e.changedTouches[0].clientX - touchX;
       const dy = e.changedTouches[0].clientY - touchY;
-      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(index + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(lbIndex + (dx < 0 ? 1 : -1));
       touchX = touchY = null;
     }, { passive: true });
   }
@@ -862,12 +984,14 @@
 
     renderBindings();
     renderStats();
+    renderChampions();
     renderTable();
     renderScorers();
     renderSquad();
     renderMvp();
     renderResults();
     renderGallery();
+    initLightbox();
     initDialogs();
     initPlayerLinks();
 

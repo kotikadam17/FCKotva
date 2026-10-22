@@ -6,6 +6,27 @@
   <title>FC Kotva ⚓ | Hanspaulská liga 7I · podzim 2026</title>
   <meta name="description" content="Oficiální web FC Kotva – hanspaulský tým plný profesionálů. Odpočet do příštího zápasu, výsledky, tabulka skupiny 7I, střelci, kádr a fotky. Jdeme si pro postup!">
   <meta name="theme-color" content="#0A0A0A">
+  <link rel="canonical" href="https://kotikadam17.github.io/FCKotva/">
+
+  <!-- Strukturovaná data pro vyhledávače (Google pozná, že jde o sportovní tým) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SportsTeam",
+    "name": "FC Kotva",
+    "alternateName": "Kotva FC",
+    "sport": "Malý fotbal",
+    "url": "https://kotikadam17.github.io/FCKotva/",
+    "logo": "https://kotikadam17.github.io/FCKotva/assets/logo.png",
+    "description": "Amatérský tým malého fotbalu z Prahy, hraje Hanspaulskou ligu (PSMF).",
+    "location": { "@type": "Place", "name": "Praha", "address": { "@type": "PostalAddress", "addressLocality": "Praha", "addressCountry": "CZ" } },
+    "memberOf": { "@type": "SportsOrganization", "name": "Pražský svaz malého fotbalu – Hanspaulská liga", "url": "https://www.psmf.cz/" },
+    "sameAs": [
+      "https://www.instagram.com/fc_kotva/",
+      "https://www.psmf.cz/souteze/2026-hanspaulska-liga-podzim/7-i/tymy/kotva-fc/"
+    ]
+  }
+  </script>
 
   <!-- Open Graph: při změně adresy webu přepiš og:url a og:image (musí být absolutní) -->
   <meta property="og:type" content="website">
@@ -18,9 +39,8 @@
   <meta property="og:image:alt" content="Logo FC Kotva – zlato-černý odznak s kotvou">
   <meta name="twitter:card" content="summary">
 
-  <link rel="icon" type="image/png" href="assets/logo.png">
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link rel="apple-touch-icon" href="assets/logo.png">
+  <link rel="icon" type="image/png" href="assets/icon-512.png">
+  <link rel="apple-touch-icon" href="assets/icon-512.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -78,6 +98,7 @@
       <ul class="nav__menu" id="nav-menu">
         <li><a href="#zapas">Zápas</a></li>
         <li><a href="#bilance">Bilance</a></li>
+        <li><a href="#sampioni">Šampioni</a></li>
         <li><a href="#tabulka">Tabulka</a></li>
         <li><a href="#strelci">Střelci</a></li>
         <li><a href="#kadr">Kádr</a></li>
@@ -101,8 +122,7 @@
       <div class="container hero__inner">
         <span class="logo logo--xl" data-logo></span>
         <p class="eyebrow" data-bind="leagueLine"></p>
-        <h1 class="hero__title display" id="hero-title"><span>FC</span> <span class="gold-text">Kotva</span></h1>
-        <ul class="hero__slogan" data-bind="slogan"></ul>
+        <h1 class="hero__title display" id="hero-title"><span>FC</span> <span class="gold-text">Kotva</span></h1>        <ul class="hero__slogan" data-bind="slogan"></ul>
         <p class="hero__intro" data-bind="intro"></p>
         <div class="hero__cta">
           <a class="btn btn--gold" href="#zapas">Příští zápas</a>
@@ -127,11 +147,20 @@
       <div class="container reveal">
         <h2 class="section__title display" id="bilance-title">Season stats</h2>
         <div id="stats" class="stats"></div>
-        <div id="form" class="form"></div>
-      </div>
+        <div id="form" class="form"></div>      </div>
     </section>
 
     <!-- 4. TABULKA -->
+    <!-- ŠAMPIONI (minulá sezóna) – obsah z team.json → champions + previousRecord -->
+    <section class="section champs" id="sampioni" aria-labelledby="champs-title">
+      <div class="champs__glow" aria-hidden="true"></div>
+      <div class="container reveal">
+        <p class="eyebrow champs__season" id="champions-season"></p>
+        <h2 class="section__title display" id="champs-title">Champ<span class="gold-text">ions</span></h2>
+        <div id="champions" class="champs__content"></div>
+      </div>
+    </section>
+
     <section class="section section--alt" id="tabulka" aria-labelledby="tabulka-title">
       <div class="container reveal">
         <h2 class="section__title display" id="tabulka-title">Tabulka <span class="gold-text" data-bind="group"></span></h2>
