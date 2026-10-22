@@ -1,0 +1,81 @@
+# Automatická aktualizace dat z PSMF + nasazení webu na GitHub Pages.
+#
+# - Po zápasech (pátek večer až neděle) a každé ráno stáhne data z PSMF.
+#   Když se něco změnilo, uloží nový data/team.json jako commit.
+# - Při každé změně (i ruční, např. nové fotky) web znovu nasadí.
+# - Ručně jde spustit v záložce Actions → „Aktualizace a nasazení“ → Run workflow.
+name: Aktualizace a nasazení
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # časy jsou v UTC (Praha = UTC+1 v zimě, UTC+2 v létě)
+    - cron: '0 20,22 * * 5'      # pátek večer po zápasech
+    - cron: '0 0,7,12,18 * * 6'  # sobota
+    - cron: '0 7,18 * * 0'       # neděle
+    - cron: '0 6 * * 1-4'        # ostatní dny ráno (změny programu, dresů…)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  update:
+    name: Stažení dat z PSMF
+    if: github.event_name != 'push'
+    runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.save.outputs.changed }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Aktualizace data/team.json
+        run: node scripts/update.js
+      - name: Uložení změn
+        id: save
+        run: |
+          if git diff --quiet -- data/team.json; then
+            echo "Žádné změny."
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add data/team.json
+          git commit -m "Aktualizace dat z PSMF ($(date -u +%Y-%m-%d))"
+          git push
+
+  deploy:
+    name: Nasazení na GitHub Pages
+    needs: update
+    # po pushi vždy; po plánované aktualizaci jen když se data změnila (ruční spuštění nasadí vždy)
+    if: >-
+      always() && (
+        github.event_name == 'push' ||
+        github.event_name == 'workflow_dispatch' && needs.update.result == 'success' ||
+        needs.update.outputs.changed == 'true'
+      )
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+      - id: deployment
+        uses: actions/deploy-pages@v4

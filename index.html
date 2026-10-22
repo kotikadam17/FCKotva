@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>FC Kotva ⚓ | Hanspaulská liga 7I · podzim 2026</title>
+  <meta name="description" content="Oficiální web FC Kotva – hanspaulský tým plný profesionálů. Odpočet do příštího zápasu, výsledky, tabulka skupiny 7I, střelci, kádr a fotky. Jdeme si pro postup!">
+  <meta name="theme-color" content="#0A0A0A">
+
+  <!-- Open Graph: při změně adresy webu přepiš og:url a og:image (musí být absolutní) -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="cs_CZ">
+  <meta property="og:site_name" content="FC Kotva">
+  <meta property="og:title" content="FC Kotva ⚓ – Jdeme si pro postup!">
+  <meta property="og:description" content="Hanspaulská liga · 7I · podzim 2026. Výsledky, tabulka, střelci a odpočet do dalšího zápasu.">
+  <meta property="og:url" content="https://kotikadam17.github.io/FCKotva/">
+  <meta property="og:image" content="https://kotikadam17.github.io/FCKotva/assets/logo.png">
+  <meta property="og:image:alt" content="Logo FC Kotva – zlato-černý odznak s kotvou">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <!-- Ikony -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-anchor" viewBox="0 0 64 64">
+      <g fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="32" cy="10" r="5.5"/>
+        <path d="M32 16v42M19 25h26"/>
+        <path d="M9 38c1.5 12 11 20 23 20s21.5-8 23-20"/>
+        <path d="M4 43l5-6 6 4M60 43l-5-6-6 4"/>
+      </g>
+    </symbol>
+    <symbol id="i-instagram" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="5"/>
+        <circle cx="12" cy="12" r="4.2"/>
+      </g>
+      <circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+        <rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>
+      </g>
+    </symbol>
+    <symbol id="i-pin" viewBox="0 0 24 24">
+      <g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="10" r="2.5"/></g>
+    </symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24">
+      <path d="M9 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="i-close" viewBox="0 0 24 24">
+      <path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <a class="skip-link" href="#main">Přeskočit na obsah</a>
+
+  <header class="site-header" id="top">
+    <nav class="nav container" aria-label="Hlavní navigace">
+      <a class="nav__brand" href="#uvod">
+        <span class="logo logo--sm" data-logo></span>
+        <span class="nav__name">FC Kotva</span>
+      </a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu">
+        <span class="sr-only">Otevřít menu</span>
+        <span class="burger" aria-hidden="true"></span>
+      </button>
+      <ul class="nav__menu" id="nav-menu">
+        <li><a href="#zapas">Zápas</a></li>
+        <li><a href="#bilance">Bilance</a></li>
+        <li><a href="#tabulka">Tabulka</a></li>
+        <li><a href="#strelci">Střelci</a></li>
+        <li><a href="#kadr">Kádr</a></li>
+        <li><a href="#vysledky">Výsledky</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#galerie">Galerie</a></li>
+        <li>
+          <a class="nav__ig" data-ig-link href="https://www.instagram.com/fc_kotva/" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg>
+            <span class="nav__ig-label">Instagram</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- 1. HERO -->
+    <section class="hero" id="uvod" aria-labelledby="hero-title">
+      <div class="hero__glow" aria-hidden="true"></div>
+      <div class="container hero__inner">
+        <span class="logo logo--xl" data-logo></span>
+        <p class="eyebrow" data-bind="leagueLine"></p>
+        <h1 class="hero__title display" id="hero-title"><span>FC</span> <span class="gold-text">Kotva</span></h1>
+        <ul class="hero__slogan" data-bind="slogan"></ul>
+        <p class="hero__intro" data-bind="intro"></p>
+        <div class="hero__cta">
+          <a class="btn btn--gold" href="#zapas">Příští zápas</a>
+          <a class="btn btn--ghost" data-ig-link href="https://www.instagram.com/fc_kotva/" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg> Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MATCHDAY -->
+    <section class="section section--glow" id="zapas" aria-labelledby="zapas-title">
+      <div class="container reveal">
+        <h2 class="section__title display" id="zapas-title">Matchday</h2>
+        <div id="matchday" class="matchday"></div>
+        <div id="h2h" class="h2h"></div>
+      </div>
+    </section>
+
+    <!-- 3. BILANCE -->
+    <section class="section" id="bilance" aria-labelledby="bilance-title">
+      <div class="container reveal">
+        <h2 class="section__title display" id="bilance-title">Season stats</h2>
+        <div id="stats" class="stats"></div>
+        <div id="form" class="form"></div>
+      </div>
+    </section>
+
+    <!-- 4. TABULKA -->
+    <section class="section section--alt" id="tabulka" aria-labelledby="tabulka-title">
+      <div class="container reveal">
+        <h2 class="section__title display" id="tabulka-title">Tabulka <span class="gold-text" data-bind="group"></span></h2>
+        <div id="table" class="table-wrap"></div>
+        <p class="note" data-bind="tableNote"></p>
+      </div>
+    </section>
+
+    <!-- 5. STŘELCI -->
+    <section class="section section--glow" id="strelci" aria-labelledby="strelci-title">
+      <div class="container reveal">
+        <h2 class="section__title display" id="strelci-title">Goal stats</h2>
+        <div id="podium" class="podium"></div>
+        <details class="scorers">
+          <summary>Kompletní střelecká tabulka</summary>
+          <div id="scorers-table" class="table-wrap"></div>
+        </details>
+      </div>
+    </section>
+
+    <!-- 6. KÁDR -->
+    <section class="section" id="kadr" aria-labelledby="kadr-title">
+      <div class="container reveal">
+        <h2 class="section__title display" id="kadr-title">Kádr</h2>
+        <p class="section__lead">Klikni na kartu pro detail hráče.</p>
+        <div id="squad" class="squad"></div>
+      </div>
+    </section>
+
+    <!-- 7. VÝSLEDKY -->
+    <section class="section section--alt" id="vysledky" aria-labelledby="vysledky-title">
+      <div class="container reveal">
+        <h2 class="section__title display" id="vysledky-title">Full time</h2>
+        <div id="mvp" class="mvp"></div>
+        <div id="results" class="results"></div>
+      </div>
+    </section>
+
+    <!-- 8. PROGRAM -->
+    <section class="section" id="program" aria-labelledby="program-title">
+      <div class="container reveal">
+        <h2 class="section__title display" id="program-title">Program</h2>
+        <ol id="fixtures" class="fixtures"></ol>
+      </div>
+    </section>
+
+    <!-- 9. GALERIE -->
+    <section class="section section--alt" id="galerie" aria-labelledby="galerie-title">
+      <div class="container reveal">
+        <h2 class="section__title display" id="galerie-title">Galerie</h2>
+        <div id="gallery" class="gallery"></div>
+      </div>
+    </section>
+
+    <!-- 10. INSTAGRAM -->
+    <section class="section ig" id="instagram" aria-labelledby="ig-title">
+      <div class="container reveal">
+        <div class="ig__card">
+          <svg class="ig__icon" aria-hidden="true"><use href="#i-instagram"/></svg>
+          <div class="ig__body">
+            <h2 class="display ig__title" id="ig-title">Sleduj nás</h2>
+            <p class="ig__handle" data-bind="igHandle"></p>
+            <dl class="ig__stats">
+              <div><dt>příspěvků</dt><dd data-bind="igPosts">0</dd></div>
+              <div><dt>sledujících</dt><dd data-bind="igFollowers">0</dd></div>
+            </dl>
+          </div>
+          <a class="btn btn--dark" data-ig-link href="https://www.instagram.com/fc_kotva/" target="_blank" rel="noopener">Otevřít Instagram</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 11. PATIČKA -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <span class="logo logo--md" data-logo></span>
+      <p class="footer__league" data-bind="footerLine"></p>
+      <ul class="footer__links">
+        <li><a data-bind-href="psmfUrl" href="https://www.psmf.cz/" target="_blank" rel="noopener">Profil týmu na PSMF</a></li>
+        <li>
+          <a data-ig-link href="https://www.instagram.com/fc_kotva/" target="_blank" rel="noopener">
+            <svg class="icon" aria-hidden="true"><use href="#i-instagram"/></svg> Instagram
+          </a>
+        </li>
+      </ul>
+      <p class="footer__quip" data-bind="footerQuip"></p>
+      <p class="footer__meta" data-bind="updated"></p>
+    </div>
+  </footer>
+
+  <!-- Detail hráče -->
+  <dialog class="modal" id="player-modal" aria-labelledby="pm-name">
+    <button class="modal__close" type="button" data-close><span class="sr-only">Zavřít</span><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <div class="modal__content" id="player-modal-content"></div>
+    <div class="modal__footer">
+      <button class="btn btn--ghost btn--sm" type="button" data-pprev><svg class="icon flip" aria-hidden="true"><use href="#i-chevron"/></svg> Předchozí</button>
+      <button class="btn btn--ghost btn--sm" type="button" data-pnext>Další <svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+    </div>
+  </dialog>
+
+  <!-- Lightbox -->
+  <dialog class="lightbox" id="lightbox" aria-label="Fotogalerie">
+    <button class="lightbox__close" type="button" data-close><span class="sr-only">Zavřít</span><svg class="icon" aria-hidden="true"><use href="#i-close"/></svg></button>
+    <button class="lightbox__nav lightbox__nav--prev" type="button" data-prev><span class="sr-only">Předchozí fotka</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+    <figure class="lightbox__figure">
+      <div class="lightbox__media" id="lightbox-media"></div>
+      <figcaption class="lightbox__caption" id="lightbox-caption"></figcaption>
+    </figure>
+    <button class="lightbox__nav lightbox__nav--next" type="button" data-next><span class="sr-only">Další fotka</span><svg class="icon" aria-hidden="true"><use href="#i-chevron"/></svg></button>
+  </dialog>
+
+  <noscript><p class="noscript">Pro zobrazení výsledků a tabulky zapni JavaScript.</p></noscript>
+</body>
+</html>

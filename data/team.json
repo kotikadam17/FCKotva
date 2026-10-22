@@ -1,0 +1,755 @@
+{
+  "updated": "2026-10-22",
+  "team": {
+    "name": "FC Kotva",
+    "psmfName": "Kotva FC",
+    "league": "Hanspaulská liga",
+    "division": "7. liga",
+    "group": "7I",
+    "season": "podzim 2026",
+    "colors": [
+      "černá",
+      "bílá"
+    ],
+    "psmfUrl": "https://www.psmf.cz/souteze/2026-hanspaulska-liga-podzim/7-i/tymy/kotva-fc/",
+    "slogan": [
+      "Fotbalová rodina FC Kotva ⚓",
+      "Hanspaulský tým plný profesionálů 🚢",
+      "Jdeme si pro postup!"
+    ],
+    "intro": "Profesionálové v tom nejpřísnějším slova smyslu: každý pátek se profesionálně dostavíme (většinou včas), profesionálně se rozcvičíme (dva protahovací cviky a jeden vtip) a profesionálně trváme na tom, že to byl ofsajd. Na hřišti házíme kotvu, v kabině nikdy. Cíl je jasný – postup. Plán B neexistuje, stejně by ho nikdo nečetl.",
+    "footerQuip": "Při tvorbě tohoto webu nebyl zraněn žádný hráč. Hamstringy po pátečním zápase se nepočítají.",
+    "matchDurationMinutes": 70,
+    "previousSeason": "Jaro 2026 · 8I",
+    "previousPsmfUrl": "https://www.psmf.cz/souteze/2026-hanspaulska-liga-jaro/8-i/tymy/kotva-fc/"
+  },
+  "instagram": {
+    "url": "https://www.instagram.com/fc_kotva/",
+    "handle": "@fc_kotva",
+    "posts": 75,
+    "followers": 168
+  },
+  "players": [
+    {
+      "slug": "petr-pihera",
+      "name": "Petr Pihera",
+      "short": "P. Pihera",
+      "number": null,
+      "position": "Brankář",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 3,
+      "goals": 0,
+      "previous": {
+        "apps": 11,
+        "goals": 0
+      }
+    },
+    {
+      "slug": "ondrej-hejduk",
+      "name": "Ondřej Hejduk",
+      "short": "Hejduk",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 3,
+      "goals": 7,
+      "previous": {
+        "apps": 11,
+        "goals": 7
+      }
+    },
+    {
+      "slug": "matej-hykrda",
+      "name": "Matěj Hykrda",
+      "short": "Hykrda",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 4,
+      "goals": 4,
+      "previous": {
+        "apps": 11,
+        "goals": 13
+      }
+    },
+    {
+      "slug": "ludek-imramovsky",
+      "name": "Luděk Imramovský",
+      "short": "Imramovský",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 3,
+      "goals": 3,
+      "previous": {
+        "apps": 5,
+        "goals": 2
+      }
+    },
+    {
+      "slug": "tomas-kollert",
+      "name": "Tomáš Kollert",
+      "short": "Kollert",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "Proti Beráncům chytal.",
+      "apps": 3,
+      "goals": 3,
+      "previous": {
+        "apps": 9,
+        "goals": 3
+      }
+    },
+    {
+      "slug": "adam-kotik",
+      "name": "Adam Kotík",
+      "short": "Kotík",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 4,
+      "goals": 3,
+      "previous": {
+        "apps": 9,
+        "goals": 9
+      }
+    },
+    {
+      "slug": "michal-pihera",
+      "name": "Michal Pihera",
+      "short": "M. Pihera",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 3,
+      "goals": 1,
+      "previous": {
+        "apps": 7,
+        "goals": 2
+      }
+    },
+    {
+      "slug": "lukas-rataj",
+      "name": "Lukáš Rataj",
+      "short": "Rataj",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 1,
+      "goals": 1,
+      "previous": {
+        "apps": 3,
+        "goals": 5
+      }
+    },
+    {
+      "slug": "adam-boldis",
+      "name": "Adam Boldiš",
+      "short": "Boldiš",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 2,
+      "goals": 0,
+      "previous": {
+        "apps": 7,
+        "goals": 1
+      }
+    },
+    {
+      "slug": "matyas-klapa",
+      "name": "Matyáš Klápa",
+      "short": "Klápa",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 2,
+      "goals": 0,
+      "previous": {
+        "apps": 10,
+        "goals": 1
+      }
+    },
+    {
+      "slug": "vojtech-polacek",
+      "name": "Vojtěch Poláček",
+      "short": "Poláček",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 2,
+      "goals": 0,
+      "previous": {
+        "apps": 6,
+        "goals": 0
+      }
+    },
+    {
+      "slug": "martin-szanto",
+      "name": "Martin Szántó",
+      "short": "Szántó",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 1,
+      "goals": 0,
+      "previous": {
+        "apps": 11,
+        "goals": 12
+      }
+    },
+    {
+      "slug": "jan-zuzanek",
+      "name": "Jan Zuzánek",
+      "short": "Zuzánek",
+      "number": null,
+      "position": "",
+      "nickname": "",
+      "age": null,
+      "study": "",
+      "instagram": "",
+      "bio": "",
+      "apps": 1,
+      "goals": 0,
+      "previous": {
+        "apps": 5,
+        "goals": 2
+      }
+    }
+  ],
+  "matches": [
+    {
+      "id": "r02",
+      "round": "2. kolo",
+      "date": "2026-09-18",
+      "time": "19:45",
+      "venue": "SLIVE",
+      "home": "Kotva FC",
+      "away": "Real Holyně",
+      "homeColors": [
+        "černá",
+        "bílá"
+      ],
+      "awayColors": [],
+      "score": [
+        3,
+        1
+      ],
+      "halftime": [
+        1,
+        0
+      ],
+      "scorers": [
+        {
+          "player": "ondrej-hejduk",
+          "minute": 26
+        },
+        {
+          "player": "matej-hykrda",
+          "minute": 31
+        },
+        {
+          "player": "ondrej-hejduk",
+          "minute": 60
+        }
+      ],
+      "report": "Velmi pěkné a slušné utkání. Drtivá převaha Kotvy, i když to výsledek úplně neukazuje."
+    },
+    {
+      "id": "r03",
+      "round": "3. kolo",
+      "date": "2026-10-02",
+      "time": "19:15",
+      "venue": "ZAK",
+      "home": "Efficenza AC",
+      "away": "Kotva FC",
+      "homeColors": [],
+      "awayColors": [
+        "černá",
+        "bílá"
+      ],
+      "score": [
+        2,
+        7
+      ],
+      "halftime": [
+        0,
+        3
+      ],
+      "scorers": [
+        {
+          "player": "ondrej-hejduk",
+          "minute": 12
+        },
+        {
+          "player": "adam-kotik",
+          "minute": 19
+        },
+        {
+          "player": "matej-hykrda",
+          "minute": 24
+        },
+        {
+          "player": "matej-hykrda",
+          "minute": 32
+        },
+        {
+          "player": "ondrej-hejduk",
+          "minute": 38
+        },
+        {
+          "player": "ludek-imramovsky",
+          "minute": 39
+        },
+        {
+          "player": "michal-pihera",
+          "minute": 49
+        }
+      ],
+      "report": "Jasná převaha Kotvy. Mohla vyhrát ještě výrazněji."
+    },
+    {
+      "id": "r04",
+      "round": "4. kolo",
+      "date": "2026-10-09",
+      "time": "17:45",
+      "venue": "ZABEH",
+      "home": "Kotva FC",
+      "away": "Beránci FC",
+      "homeColors": [
+        "černá",
+        "bílá"
+      ],
+      "awayColors": [],
+      "score": [
+        8,
+        6
+      ],
+      "halftime": [
+        4,
+        0
+      ],
+      "scorers": [
+        {
+          "player": "ludek-imramovsky",
+          "minute": 17
+        },
+        {
+          "player": "ondrej-hejduk",
+          "minute": 18
+        },
+        {
+          "player": "tomas-kollert",
+          "minute": 22
+        },
+        {
+          "player": "tomas-kollert",
+          "minute": 26
+        },
+        {
+          "player": "ondrej-hejduk",
+          "minute": 46
+        },
+        {
+          "player": "ludek-imramovsky",
+          "minute": 48
+        },
+        {
+          "player": "ondrej-hejduk",
+          "minute": 50
+        },
+        {
+          "player": "lukas-rataj",
+          "minute": 57
+        }
+      ],
+      "report": "Gólové hody v Záběhlicích. Hejduk s hattrickem, Beránci jen snižovali."
+    },
+    {
+      "id": "r05",
+      "round": "5. kolo",
+      "date": "2026-10-16",
+      "time": "19:00",
+      "venue": "ZABEH",
+      "home": "Deportivo bez Coruna B",
+      "away": "Kotva FC",
+      "homeColors": [],
+      "awayColors": [
+        "černá",
+        "bílá"
+      ],
+      "score": [
+        1,
+        4
+      ],
+      "halftime": [
+        0,
+        1
+      ],
+      "scorers": [
+        {
+          "player": "matej-hykrda",
+          "minute": 9
+        },
+        {
+          "player": "adam-kotik",
+          "minute": 49
+        },
+        {
+          "player": "adam-kotik",
+          "minute": 53
+        },
+        {
+          "player": "tomas-kollert",
+          "minute": 55
+        }
+      ],
+      "report": "Kotva dominovala od začátku, Kotík byl u všech gólů."
+    },
+    {
+      "id": "r06",
+      "round": "6. kolo",
+      "date": "2026-10-23",
+      "time": "18:00",
+      "venue": "P3",
+      "home": "Kotva FC",
+      "away": "Nejasná identita 1.HK",
+      "homeColors": [
+        "černá",
+        "bílá"
+      ],
+      "awayColors": [
+        "bílá",
+        "modrá"
+      ],
+      "score": null,
+      "halftime": null,
+      "scorers": [],
+      "report": ""
+    },
+    {
+      "id": "r07",
+      "round": "7. kolo",
+      "date": "2026-10-30",
+      "time": "19:15",
+      "venue": "P2",
+      "home": "Poloukes FC",
+      "away": "Kotva FC",
+      "homeColors": [
+        "bílá",
+        "modrá"
+      ],
+      "awayColors": [
+        "černá",
+        "bílá"
+      ],
+      "score": null,
+      "halftime": null,
+      "scorers": [],
+      "report": ""
+    },
+    {
+      "id": "r08",
+      "round": "8. kolo",
+      "date": "2026-11-06",
+      "time": "18:00",
+      "venue": "P1",
+      "home": "Kotva FC",
+      "away": "Spartak Luban TJ",
+      "homeColors": [
+        "černá",
+        "bílá"
+      ],
+      "awayColors": [
+        "oranžová"
+      ],
+      "score": null,
+      "halftime": null,
+      "scorers": [],
+      "report": ""
+    },
+    {
+      "id": "r09",
+      "round": "9. kolo",
+      "date": "2026-11-13",
+      "time": "19:15",
+      "venue": "P2",
+      "home": "Taverners FC",
+      "away": "Kotva FC",
+      "homeColors": [
+        "růžová"
+      ],
+      "awayColors": [
+        "černá",
+        "bílá"
+      ],
+      "score": null,
+      "halftime": null,
+      "scorers": [],
+      "report": ""
+    },
+    {
+      "id": "r10",
+      "round": "10. kolo",
+      "date": "2026-11-20",
+      "time": "18:00",
+      "venue": "HANSP",
+      "home": "Železní sokoli 1.FC",
+      "away": "Kotva FC",
+      "homeColors": [
+        "bílo-modrá"
+      ],
+      "awayColors": [
+        "černá",
+        "bílá"
+      ],
+      "score": null,
+      "halftime": null,
+      "scorers": [],
+      "report": ""
+    },
+    {
+      "id": "r01",
+      "round": "1. kolo (odložené)",
+      "date": "2026-11-27",
+      "time": "19:30",
+      "venue": "HOSTI",
+      "home": "Inter Hostivař",
+      "away": "Kotva FC",
+      "homeColors": [
+        "bílá"
+      ],
+      "awayColors": [
+        "černá",
+        "bílá"
+      ],
+      "score": null,
+      "halftime": null,
+      "scorers": [],
+      "report": ""
+    },
+    {
+      "id": "r11",
+      "round": "11. kolo",
+      "date": "2026-12-04",
+      "time": "18:15",
+      "venue": "BECH",
+      "home": "Kotva FC",
+      "away": "Piemonte Calcio",
+      "homeColors": [
+        "černá",
+        "bílá"
+      ],
+      "awayColors": [
+        "vínová",
+        "bílá"
+      ],
+      "score": null,
+      "halftime": null,
+      "scorers": [],
+      "report": ""
+    }
+  ],
+  "table": [
+    {
+      "team": "Spartak Luban TJ",
+      "played": 5,
+      "won": 5,
+      "drawn": 0,
+      "lost": 0,
+      "gf": 45,
+      "ga": 15,
+      "points": 10
+    },
+    {
+      "team": "Kotva FC",
+      "played": 4,
+      "won": 4,
+      "drawn": 0,
+      "lost": 0,
+      "gf": 22,
+      "ga": 10,
+      "points": 8
+    },
+    {
+      "team": "Piemonte Calcio",
+      "played": 5,
+      "won": 3,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 15,
+      "ga": 10,
+      "points": 7
+    },
+    {
+      "team": "Beránci FC",
+      "played": 5,
+      "won": 3,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 27,
+      "ga": 20,
+      "points": 6
+    },
+    {
+      "team": "Taverners FC",
+      "played": 5,
+      "won": 2,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 20,
+      "ga": 11,
+      "points": 5
+    },
+    {
+      "team": "Železní sokoli 1.FC",
+      "played": 5,
+      "won": 1,
+      "drawn": 3,
+      "lost": 1,
+      "gf": 10,
+      "ga": 13,
+      "points": 5
+    },
+    {
+      "team": "Nejasná identita 1.HK",
+      "played": 5,
+      "won": 2,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 14,
+      "ga": 25,
+      "points": 4
+    },
+    {
+      "team": "Efficenza AC",
+      "played": 5,
+      "won": 2,
+      "drawn": 0,
+      "lost": 3,
+      "gf": 9,
+      "ga": 20,
+      "points": 4
+    },
+    {
+      "team": "Inter Hostivař",
+      "played": 4,
+      "won": 1,
+      "drawn": 1,
+      "lost": 2,
+      "gf": 5,
+      "ga": 5,
+      "points": 3
+    },
+    {
+      "team": "Poloukes FC",
+      "played": 5,
+      "won": 1,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 10,
+      "ga": 21,
+      "points": 3
+    },
+    {
+      "team": "Deportivo bez Coruna B",
+      "played": 5,
+      "won": 1,
+      "drawn": 0,
+      "lost": 4,
+      "gf": 14,
+      "ga": 34,
+      "points": 2
+    },
+    {
+      "team": "Real Holyně",
+      "played": 5,
+      "won": 0,
+      "drawn": 1,
+      "lost": 4,
+      "gf": 6,
+      "ga": 13,
+      "points": 1
+    }
+  ],
+  "tableNote": "V Hanspaulce je výhra za 2 body, remíza za 1. Kotva má o zápas méně – odložené 1. kolo s Interem Hostivař se dohrává 27. 11.",
+  "mvp": {
+    "match": "r05",
+    "player": "adam-kotik",
+    "text": "Dva góly, podíl na všech čtyřech a klid ve středu pole. Kapitán by mu nejradši podepsal profi smlouvu, kdyby nějakou měl."
+  },
+  "gallery": [
+    {
+      "src": "assets/gallery/01.jpg",
+      "caption": "Full time proti Real Holyně – 3:1"
+    },
+    {
+      "src": "assets/gallery/02.jpg",
+      "caption": "Kabina po sedmigólové show proti Efficenze"
+    },
+    {
+      "src": "assets/gallery/03.jpg",
+      "caption": "Hejdukův hattrick proti Beráncům"
+    },
+    {
+      "src": "assets/gallery/04.jpg",
+      "caption": "Kollert v bráně proti Beráncům – univerzál k pohledání"
+    },
+    {
+      "src": "assets/gallery/05.jpg",
+      "caption": "Týmové foto – podzim 2026"
+    },
+    {
+      "src": "assets/gallery/06.jpg",
+      "caption": "Páteční světla na Záběhlicích"
+    }
+  ]
+}
