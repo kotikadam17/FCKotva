@@ -282,7 +282,24 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   background: repeating-linear-gradient(115deg, transparent 0 60px, rgba(255, 255, 255, .018) 60px 120px);
 }
 .hero__inner { position: relative; display: flex; flex-direction: column; align-items: center; gap: 18px; }
-.hero__title { font-size: clamp(4rem, 22vw, 9.5rem); margin: 0; }
+/* obří nápis FC KOTVA, logo v mezeře mezi slovy a lehce přes okraje písmen
+   (celý řádek má cca 4,6 em → 21 % šířky) */
+.hero__stage { container-type: inline-size; width: 100%; }
+.hero__title {
+  margin: 0;
+  display: flex; justify-content: center; align-items: center;
+  font-size: min(21cqi, 11rem); line-height: .9;
+  white-space: nowrap;
+}
+/* zlatý přechod se kreslí jen uvnitř boxu – rezerva, ať se písmena neořežou */
+.hero__title > span:not(.logo) { display: block; padding: .09em .06em 0; margin-top: -.09em; }
+.logo--hero {
+  position: relative; z-index: 1;
+  width: 1.2em; height: 1.75em;
+  margin: 0 -.07em;
+  transform: skewX(calc(-1 * var(--skew))); /* nadpis je zkosený, logo ne */
+}
+.logo--hero img { filter: drop-shadow(0 0 .12em rgba(10, 10, 10, .95)) drop-shadow(0 .1em .4em rgba(242, 193, 46, .25)); }
 .hero__slogan { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; font-weight: 700; font-size: 1.02rem; }
 .hero__slogan li:first-child { color: var(--gold-light); }
 .hero__intro { max-width: 60ch; color: #DADADA; margin: 4px 0 8px; }
@@ -377,12 +394,13 @@ html.menu-open, html.menu-open body { overflow: hidden; }
   border-radius: var(--radius);
   padding: 16px 14px;
   position: relative; overflow: hidden;
+  container-type: inline-size; /* čísla se přizpůsobí šířce karty (skóre „22:10“ v 7 sloupcích) */
 }
 .stat--gold { background: var(--gold-grad); color: var(--black); border: 0; }
 .stat__num {
   display: block;
   font-family: var(--font-display);
-  font-size: clamp(2.6rem, 13vw, 4.2rem);
+  font-size: min(clamp(2.6rem, 13vw, 4.2rem), 40cqi);
   line-height: 1;
   font-variant-numeric: tabular-nums;
 }
@@ -615,13 +633,18 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 
 /* ---------- Kádr – FUT karty ---------- */
 
-.squad {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
+/* řady podle pozic (útok → brankář), karty v řadě vystředěné jako sestava */
+.squad { --cols: 2; --gap: 12px; display: flex; flex-direction: column; gap: 28px; }
+@media (min-width: 640px) { .squad { --cols: 3; --gap: 16px; } }
+@media (min-width: 960px) { .squad { --cols: 5; --gap: 20px; gap: 36px; } }
+.squad__title {
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 0 12px;
+  font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
 }
-@media (min-width: 640px) { .squad { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } }
-@media (min-width: 960px) { .squad { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
+.squad__title::before, .squad__title::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+.squad__cards { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--gap); }
+.squad__cards .fut { width: calc((100% - (var(--cols) - 1) * var(--gap)) / var(--cols)); }
 
 .fut {
   position: relative;
@@ -675,7 +698,9 @@ html.menu-open, html.menu-open body { overflow: hidden; }
 }
 .fut__id { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .fut .pname__first { color: var(--gold-light); font-size: .78rem; }
-.fut .pname__last { font-size: clamp(1.25rem, 5.6vw, 1.6rem); }
+/* velikost příjmení podle šířky karty, ať se dlouhá jména (Imramovský) nelámou uprostřed */
+.fut { container-type: inline-size; }
+.fut .pname__last { font-size: clamp(1rem, 11cqi, 1.6rem); overflow-wrap: normal; white-space: nowrap; }
 .fut__pos { font-size: .6rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .fut__num {
   flex: none;

@@ -13,11 +13,9 @@
     ],
     "psmfUrl": "https://www.psmf.cz/souteze/2026-hanspaulska-liga-podzim/7-i/tymy/kotva-fc/",
     "slogan": [
-      "Fotbalová rodina FC Kotva ⚓",
-      "Hanspaulský tým plný profesionálů 🚢",
-      "Jdeme si pro postup!"
+      "Fotbalová rodina FC Kotva ⚓"
     ],
-    "intro": "Profesionálové v tom nejpřísnějším slova smyslu: každý pátek se profesionálně dostavíme (většinou včas), profesionálně se rozcvičíme (dva protahovací cviky a jeden vtip) a profesionálně trváme na tom, že to byl ofsajd. Na hřišti házíme kotvu, v kabině nikdy. Cíl je jasný – postup. Plán B neexistuje, stejně by ho nikdo nečetl.",
+    "intro": "Parta kamarádů z GVP, kterou spojuje fotbal a ještě víc to, co přijde po něm. Na hřišti dáme do každého zápasu všechno, co nám zbylo od čtvrtka, a třetí poločas v hospodě zatím nikdo neprohrál. Kotvu házíme po každém zápase, většinou ke stolu s pivem.",
     "footerQuip": "Při tvorbě tohoto webu nebyl zraněn žádný hráč. Hamstringy po pátečním zápase se nepočítají.",
     "matchDurationMinutes": 70,
     "previousSeason": "Jaro 2026 · 8I",
@@ -34,12 +32,12 @@
       "slug": "petr-pihera",
       "name": "Petr Pihera",
       "short": "P. Pihera",
-      "number": null,
+      "number": 19,
       "position": "Brankář",
-      "nickname": "",
+      "nickname": "Pihy",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@kyselina1",
       "bio": "",
       "apps": 3,
       "goals": 0,
@@ -54,7 +52,7 @@
       "name": "Ondřej Hejduk",
       "short": "Hejduk",
       "number": 17,
-      "position": "Útočník",
+      "position": "Záložník",
       "nickname": "Hejdukino",
       "age": null,
       "study": "",
@@ -71,12 +69,12 @@
       "slug": "matej-hykrda",
       "name": "Matěj Hykrda",
       "short": "Hykrda",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 13,
+      "position": "Útočník",
+      "nickname": "Hyky",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@matej_hykrda",
       "bio": "",
       "apps": 4,
       "goals": 4,
@@ -89,9 +87,9 @@
       "slug": "ludek-imramovsky",
       "name": "Luděk Imramovský",
       "short": "Imramovský",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 27,
+      "position": "Záložník",
+      "nickname": "Luďan",
       "age": null,
       "study": "",
       "instagram": "",
@@ -107,12 +105,12 @@
       "slug": "tomas-kollert",
       "name": "Tomáš Kollert",
       "short": "Kollert",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 2,
+      "position": "Obránce",
+      "nickname": "Koule",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@tomas_kollert",
       "bio": "",
       "apps": 3,
       "goals": 3,
@@ -125,12 +123,12 @@
       "slug": "adam-kotik",
       "name": "Adam Kotík",
       "short": "Kotík",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 37,
+      "position": "Obránce",
+      "nickname": "Kotík",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@_kotikadam",
       "bio": "",
       "apps": 4,
       "goals": 3,
@@ -161,12 +159,12 @@
       "slug": "lukas-rataj",
       "name": "Lukáš Rataj",
       "short": "Rataj",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 7,
+      "position": "Záložník",
+      "nickname": "Raty",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@rat11y",
       "bio": "",
       "apps": 1,
       "goals": 1,
@@ -179,12 +177,12 @@
       "slug": "adam-boldis",
       "name": "Adam Boldiš",
       "short": "Boldiš",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 3,
+      "position": "Obránce",
+      "nickname": "Bolďa",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@adam_bolda",
       "bio": "",
       "apps": 2,
       "goals": 0,
@@ -197,12 +195,12 @@
       "slug": "matyas-klapa",
       "name": "Matyáš Klápa",
       "short": "Klápa",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 99,
+      "position": "Útočník",
+      "nickname": "Klop",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@maty.klapa",
       "bio": "",
       "apps": 2,
       "goals": 0,
@@ -215,12 +213,12 @@
       "slug": "vojtech-polacek",
       "name": "Vojtěch Poláček",
       "short": "Poláček",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 33,
+      "position": "Útočník",
+      "nickname": "Polda",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@vojta_polacekk",
       "bio": "",
       "apps": 2,
       "goals": 0,
@@ -233,12 +231,12 @@
       "slug": "martin-szanto",
       "name": "Martin Szántó",
       "short": "Szántó",
-      "number": null,
-      "position": "",
-      "nickname": "",
+      "number": 11,
+      "position": "Obránce",
+      "nickname": "Martinos",
       "age": null,
       "study": "",
-      "instagram": "",
+      "instagram": "@_martinszanto_",
       "bio": "",
       "apps": 1,
       "goals": 0,
@@ -788,15 +786,18 @@
     "photos": [
       {
         "src": "assets/champions/01.jpg",
-        "caption": "Šampioni skupiny 8I – jaro 2026"
+        "caption": "Šampioni skupiny 8I – jaro 2026",
+        "focus": "50% 68%"
       },
       {
         "src": "assets/champions/02.jpg",
-        "caption": "Poslední hvizd sezóny"
+        "caption": "Posádka v kompletní sestavě",
+        "focus": "50% 66%"
       },
       {
         "src": "assets/champions/03.jpg",
-        "caption": "Oslavy (ta slušnější část)"
+        "caption": "Mistrovská trička: celý kádr na zádech",
+        "focus": "50% 55%"
       }
     ]
   },
@@ -813,27 +814,75 @@
   "gallery": [
     {
       "src": "assets/gallery/01.jpg",
-      "caption": "Full time proti Real Holyně – 3:1"
+      "caption": ""
     },
     {
       "src": "assets/gallery/02.jpg",
-      "caption": "Kabina po sedmigólové show proti Efficenze"
+      "caption": ""
     },
     {
       "src": "assets/gallery/03.jpg",
-      "caption": "Hejdukův hattrick proti Beráncům"
+      "caption": ""
     },
     {
       "src": "assets/gallery/04.jpg",
-      "caption": "Poláček v bráně proti Beráncům – univerzál k pohledání"
+      "caption": ""
     },
     {
       "src": "assets/gallery/05.jpg",
-      "caption": "Týmové foto – podzim 2026"
+      "caption": ""
     },
     {
       "src": "assets/gallery/06.jpg",
-      "caption": "Páteční světla na Záběhlicích"
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/07.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/08.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/09.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/10.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/11.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/12.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/13.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/14.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/15.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/16.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/17.jpg",
+      "caption": ""
+    },
+    {
+      "src": "assets/gallery/18.jpg",
+      "caption": ""
     }
   ],
   "previousRecord": {

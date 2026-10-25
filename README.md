@@ -26,6 +26,8 @@ npm start              # = node scripts/serve.js -> http://localhost:6546/
 
 Ulož fotku jako `assets/players/<slug>.jpg`. `slug` najdeš u hráče v `team.json`, např. `ondrej-hejduk.jpg`. Ideální je čtvercová fotka aspoň 400 × 400 px. Když fotka chybí, zobrazí se iniciály na zlatém pozadí.
 
+Profilovku z Instagramu (malý kroužek u odkazu v profilu hráče) ulož jako `assets/players/ig/<slug>.jpg`. Dokud chybí, použije se týmová fotka.
+
 ## Profily hráčů
 
 V `team.json` doplň u každého hráče tato pole. Prázdná pole se na webu zobrazí jako „doplníme“.

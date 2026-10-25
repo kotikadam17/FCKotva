@@ -120,9 +120,12 @@
     <section class="hero" id="uvod" aria-labelledby="hero-title">
       <div class="hero__glow" aria-hidden="true"></div>
       <div class="container hero__inner">
-        <span class="logo logo--xl" data-logo></span>
+        <!-- obří nápis, logo v mezeře mezi „FC“ a „Kotva“ (pro čtečky je jen ozdoba) -->
+        <div class="hero__stage">
+          <h1 class="hero__title display" id="hero-title"><span>FC</span> <span class="logo logo--hero" data-logo aria-hidden="true"></span> <span class="gold-text">Kotva</span></h1>
+        </div>
         <p class="eyebrow" data-bind="leagueLine"></p>
-        <h1 class="hero__title display" id="hero-title"><span>FC</span> <span class="gold-text">Kotva</span></h1>        <ul class="hero__slogan" data-bind="slogan"></ul>
+        <ul class="hero__slogan" data-bind="slogan"></ul>
         <p class="hero__intro" data-bind="intro"></p>
         <div class="hero__cta">
           <a class="btn btn--gold" href="#zapas">Příští zápas</a>

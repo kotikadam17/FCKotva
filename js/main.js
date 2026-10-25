@@ -149,7 +149,13 @@
         box.innerHTML = ANCHOR_SVG;
         break;
       case 'initials':
-        img.remove(); // iniciály pod fotkou jsou vidět od začátku
+        // náhradní fotka (např. týmová místo instagramové), jinak zůstanou iniciály
+        if (img.dataset.fallbackSrc) {
+          img.src = img.dataset.fallbackSrc;
+          delete img.dataset.fallbackSrc;
+        } else {
+          img.remove(); // iniciály pod fotkou jsou vidět od začátku
+        }
         break;
       case 'photo': {
         const ph = document.createElement('div');
@@ -178,6 +184,12 @@
     return `<span class="${cls}"><span class="initials" aria-hidden="true">${esc(initials(p.name))}</span><img src="assets/players/${esc(p.slug)}.jpg" alt="${esc(alt)}" loading="lazy" data-fallback="initials"></span>`;
   }
   const avatarHtml = (p, cls, alt = '') => photoHtml(p, `avatar ${cls || ''}`, alt);
+
+  // profilovka z Instagramu (assets/players/ig/<slug>.jpg); dokud chybí, ukáže se týmová fotka
+  function igAvatarHtml(p, cls) {
+    const slug = esc(p.slug);
+    return `<span class="avatar ${cls}"><span class="initials" aria-hidden="true">${esc(initials(p.name))}</span><img src="assets/players/ig/${slug}.jpg" data-fallback-src="assets/players/${slug}.jpg" alt="" loading="lazy" data-fallback="initials"></span>`;
+  }
 
   function kitsHtml(colors) {
     if (!colors || !colors.length) return '<span class="kits"><span class="kits__label">dresy neuvedeny</span></span>';
@@ -447,7 +459,7 @@
       <div class="champs__photos">
         ${photos.map((g, i) => `
           <button class="champs__photo champs__photo--${i + 1}" type="button" data-index="${i}" aria-haspopup="dialog" aria-label="Zvětšit fotku: ${esc(g.caption)}">
-            <img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy" data-fallback="photo">
+            <img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy" data-fallback="photo"${g.focus ? ` style="object-position: ${esc(g.focus)}"` : ''}>
             ${g.caption ? `<span class="gallery__cap" aria-hidden="true">${esc(g.caption)}</span>` : ''}
           </button>`).join('')}
       </div>
@@ -570,9 +582,21 @@
   const conceded = (p) => playedMatches().filter((v) => v.m.goalkeeper === p.slug).reduce((sum, v) => sum + v.ga, 0);
 
   // pořadí hráčů v kádru (brankáři první, pak podle gólů)
+  // Kádr jako sestava na hřišti: útok nahoře, brankář dole
+  const SQUAD_LINES = [
+    { title: 'Útočníci', match: /útoč/i },
+    { title: 'Záložníci', match: /zálo/i },
+    { title: 'Obránci', match: /obrán/i },
+    { title: 'Brankář', match: /brank/i },
+  ];
+  const lineIndex = (p) => {
+    const i = SQUAD_LINES.findIndex((l) => l.match.test(p.position || ''));
+    return i < 0 ? SQUAD_LINES.length : i;
+  };
+
   function squadOrder() {
-    const gk = (p) => (isKeeper(p) ? 0 : 1);
-    return D.players.slice().sort((a, b) => gk(a) - gk(b) || b.goals - a.goals || a.name.localeCompare(b.name, 'cs'));
+    return D.players.slice().sort((a, b) => lineIndex(a) - lineIndex(b)
+      || (a.number ?? 999) - (b.number ?? 999) || a.name.localeCompare(b.name, 'cs'));
   }
 
   // ---------- Střelci ----------
@@ -637,7 +661,19 @@
   // ---------- Kádr ----------
 
   function renderSquad() {
-    $('#squad').innerHTML = squadOrder().map((p) => `
+    const order = squadOrder();
+    const lines = [...SQUAD_LINES, { title: 'Ostatní' }]
+      .map((l, i) => ({ title: l.title, players: order.filter((p) => lineIndex(p) === i) }))
+      .filter((l) => l.players.length);
+    $('#squad').innerHTML = lines.map((l) => `
+      <div class="squad__line">
+        <h3 class="squad__title">${esc(l.title)}</h3>
+        <div class="squad__cards">${l.players.map(futHtml).join('')}</div>
+      </div>`).join('');
+  }
+
+  function futHtml(p) {
+    return `
       <button class="fut" type="button" data-player="${esc(p.slug)}" aria-haspopup="dialog" aria-label="Profil hráče ${esc(p.name)}">
         ${photoHtml(p, 'fut__photo photo')}
         <span class="fut__body">
@@ -648,7 +684,7 @@
           <span class="fut__num">${hasValue(p.number) ? esc(p.number) : '–'}</span>
         </span>
         <span class="fut__more" aria-hidden="true">Profil ${icon('chevron')}</span>
-      </button>`).join('');
+      </button>`;
   }
 
   let currentPlayer = null;
@@ -704,7 +740,7 @@
 
         <dl class="profile__facts">
           <div class="profile__ig"><dt>Instagram</dt><dd>${ig
-            ? `<a href="${esc(ig)}" target="_blank" rel="noopener">${avatarHtml(p, 'profile__ig-avatar')} ${esc(igHandle(p.instagram))} ${icon('instagram')}</a>`
+            ? `<a href="${esc(ig)}" target="_blank" rel="noopener">${igAvatarHtml(p, 'profile__ig-avatar')} ${esc(igHandle(p.instagram))} ${icon('instagram')}</a>`
             : placeholder()}</dd></div>
         </dl>
 
@@ -898,9 +934,9 @@
     const items = D.gallery || [];
     const box = $('#gallery');
     box.innerHTML = items.map((g, i) => `
-      <button class="gallery__item" type="button" data-index="${i}" aria-haspopup="dialog" aria-label="Zvětšit fotku: ${esc(g.caption)}">
-        <img src="${esc(g.src)}" alt="${esc(g.caption)}" loading="lazy" data-fallback="photo" data-ratio="${RATIOS[i % RATIOS.length]}">
-        <span class="gallery__cap" aria-hidden="true">${esc(g.caption)}</span>
+      <button class="gallery__item" type="button" data-index="${i}" aria-haspopup="dialog" aria-label="Zvětšit fotku${g.caption ? ': ' + esc(g.caption) : ` ${i + 1}`}">
+        <img src="${esc(g.src)}" alt="${esc(g.caption || 'Fotka FC Kotva')}" loading="lazy" data-fallback="photo" data-ratio="${RATIOS[i % RATIOS.length]}">
+        ${g.caption ? `<span class="gallery__cap" aria-hidden="true">${esc(g.caption)}</span>` : ''}
       </button>`).join('') || '<p class="empty">Fotky brzy přibudou.</p>';
 
     box.addEventListener('click', (e) => {
@@ -916,7 +952,7 @@
   function showLightbox(i) {
     lbIndex = (i + lbItems.length) % lbItems.length;
     const g = lbItems[lbIndex];
-    $('#lightbox-media').innerHTML = `<img src="${esc(g.src)}" alt="${esc(g.caption)}" data-fallback="photo" data-ratio="4 / 3">`;
+    $('#lightbox-media').innerHTML = `<img src="${esc(g.src)}" alt="${esc(g.caption || 'Fotka FC Kotva')}" data-fallback="photo" data-ratio="4 / 3">`;
     $('#lightbox-caption').innerHTML = `${esc(g.caption)}<small>${lbIndex + 1} / ${lbItems.length}</small>`;
   }
 
