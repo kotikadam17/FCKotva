@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-22",
+  "updated": "2026-10-26",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -665,6 +665,16 @@
       "points": 10
     },
     {
+      "team": "Beránci FC",
+      "played": 6,
+      "won": 4,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 33,
+      "ga": 21,
+      "points": 8
+    },
+    {
       "team": "Kotva FC",
       "played": 4,
       "won": 4,
@@ -683,16 +693,6 @@
       "gf": 15,
       "ga": 10,
       "points": 7
-    },
-    {
-      "team": "Beránci FC",
-      "played": 5,
-      "won": 3,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 27,
-      "ga": 20,
-      "points": 6
     },
     {
       "team": "Taverners FC",
@@ -736,12 +736,12 @@
     },
     {
       "team": "Inter Hostivař",
-      "played": 4,
+      "played": 5,
       "won": 1,
       "drawn": 1,
-      "lost": 2,
-      "gf": 5,
-      "ga": 5,
+      "lost": 3,
+      "gf": 6,
+      "ga": 11,
       "points": 3
     },
     {
