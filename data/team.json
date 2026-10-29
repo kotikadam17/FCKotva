@@ -1,5 +1,5 @@
 {
-  "updated": "2026-10-28",
+  "updated": "2026-10-29",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -39,7 +39,7 @@
       "study": "",
       "instagram": "@kyselina1",
       "bio": "",
-      "apps": 3,
+      "apps": 4,
       "goals": 0,
       "previous": {
         "apps": 11,
@@ -58,8 +58,8 @@
       "study": "",
       "instagram": "@hejdukino",
       "bio": "",
-      "apps": 3,
-      "goals": 7,
+      "apps": 4,
+      "goals": 8,
       "previous": {
         "apps": 11,
         "goals": 7
@@ -76,7 +76,7 @@
       "study": "",
       "instagram": "@matej_hykrda",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 4,
       "previous": {
         "apps": 11,
@@ -130,7 +130,7 @@
       "study": "",
       "instagram": "@_kotikadam",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 3,
       "previous": {
         "apps": 9,
@@ -148,7 +148,7 @@
       "study": "",
       "instagram": "@misapihera",
       "bio": "",
-      "apps": 3,
+      "apps": 4,
       "goals": 1,
       "previous": {
         "apps": 7,
@@ -202,8 +202,8 @@
       "study": "",
       "instagram": "@maty.klapa",
       "bio": "",
-      "apps": 2,
-      "goals": 0,
+      "apps": 3,
+      "goals": 1,
       "previous": {
         "apps": 10,
         "goals": 1
@@ -220,7 +220,7 @@
       "study": "",
       "instagram": "@vojta_polacekk",
       "bio": "",
-      "apps": 2,
+      "apps": 3,
       "goals": 0,
       "previous": {
         "apps": 6,
@@ -238,8 +238,8 @@
       "study": "",
       "instagram": "@_martinszanto_",
       "bio": "",
-      "apps": 1,
-      "goals": 0,
+      "apps": 2,
+      "goals": 2,
       "previous": {
         "apps": 11,
         "goals": 12
@@ -525,10 +525,47 @@
         "bílá",
         "modrá"
       ],
-      "score": null,
-      "halftime": null,
-      "scorers": [],
-      "report": ""
+      "score": [
+        4,
+        1
+      ],
+      "halftime": [
+        1,
+        0
+      ],
+      "scorers": [
+        {
+          "player": "martin-szanto",
+          "minute": 20
+        },
+        {
+          "player": "ondrej-hejduk",
+          "minute": 33
+        },
+        {
+          "player": "matyas-klapa",
+          "minute": 43
+        },
+        {
+          "player": "martin-szanto",
+          "minute": 54
+        }
+      ],
+      "report": "Kvalitní souboj dvou útočně hrajících týmů. Hosté měli zpočátku mírnou převahu, ale jak se navyšovalo skóre na straně domácích, tak postupně upadali.",
+      "goalkeeper": "petr-pihera",
+      "best": "martin-szanto",
+      "lineup": [
+        "petr-pihera",
+        "ondrej-hejduk",
+        "matej-hykrda",
+        "matyas-klapa",
+        "adam-kotik",
+        "michal-pihera",
+        "vojtech-polacek",
+        "martin-szanto"
+      ],
+      "captain": "martin-szanto",
+      "cards": []
     },
     {
       "id": "r07",
