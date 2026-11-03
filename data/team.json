@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-02",
+  "updated": "2026-11-03",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -702,6 +702,16 @@
       "points": 14
     },
     {
+      "team": "Piemonte Calcio",
+      "played": 7,
+      "won": 5,
+      "drawn": 1,
+      "lost": 1,
+      "gf": 37,
+      "ga": 11,
+      "points": 11
+    },
+    {
       "team": "Beránci FC",
       "played": 7,
       "won": 5,
@@ -720,16 +730,6 @@
       "gf": 26,
       "ga": 14,
       "points": 10
-    },
-    {
-      "team": "Piemonte Calcio",
-      "played": 6,
-      "won": 4,
-      "drawn": 1,
-      "lost": 1,
-      "gf": 35,
-      "ga": 11,
-      "points": 9
     },
     {
       "team": "Taverners FC",
@@ -783,12 +783,12 @@
     },
     {
       "team": "Nejasná identita 1.HK",
-      "played": 6,
+      "played": 7,
       "won": 2,
       "drawn": 0,
-      "lost": 4,
+      "lost": 5,
       "gf": 15,
-      "ga": 29,
+      "ga": 31,
       "points": 4
     },
     {
