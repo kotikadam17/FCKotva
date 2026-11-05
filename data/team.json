@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-03",
+  "updated": "2026-11-05",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -39,7 +39,7 @@
       "study": "",
       "instagram": "@kyselina1",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 0,
       "previous": {
         "apps": 11,
@@ -58,7 +58,7 @@
       "study": "",
       "instagram": "@hejdukino",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 8,
       "previous": {
         "apps": 11,
@@ -76,7 +76,7 @@
       "study": "",
       "instagram": "@matej_hykrda",
       "bio": "",
-      "apps": 5,
+      "apps": 6,
       "goals": 4,
       "previous": {
         "apps": 11,
@@ -94,7 +94,7 @@
       "study": "",
       "instagram": "",
       "bio": "",
-      "apps": 3,
+      "apps": 4,
       "goals": 3,
       "previous": {
         "apps": 5,
@@ -112,7 +112,7 @@
       "study": "",
       "instagram": "@tomas_kollert",
       "bio": "",
-      "apps": 3,
+      "apps": 4,
       "goals": 3,
       "previous": {
         "apps": 9,
@@ -220,7 +220,7 @@
       "study": "",
       "instagram": "@vojta_polacekk",
       "bio": "",
-      "apps": 3,
+      "apps": 4,
       "goals": 0,
       "previous": {
         "apps": 6,
@@ -238,7 +238,7 @@
       "study": "",
       "instagram": "@_martinszanto_",
       "bio": "",
-      "apps": 2,
+      "apps": 3,
       "goals": 2,
       "previous": {
         "apps": 11,
@@ -256,7 +256,7 @@
       "study": "",
       "instagram": "@honza_zuzanek",
       "bio": "",
-      "apps": 1,
+      "apps": 2,
       "goals": 0,
       "previous": {
         "apps": 5,
@@ -583,10 +583,30 @@
         "černá",
         "bílá"
       ],
-      "score": null,
-      "halftime": null,
+      "score": [
+        3,
+        0
+      ],
+      "halftime": [
+        2,
+        0
+      ],
       "scorers": [],
-      "report": ""
+      "report": "Domácí byli efektivnější v zakončení a zaslouženě zvítězili o tři branky.",
+      "goalkeeper": "petr-pihera",
+      "best": "ondrej-hejduk",
+      "lineup": [
+        "petr-pihera",
+        "ondrej-hejduk",
+        "matej-hykrda",
+        "ludek-imramovsky",
+        "tomas-kollert",
+        "vojtech-polacek",
+        "martin-szanto",
+        "jan-zuzanek"
+      ],
+      "captain": "martin-szanto",
+      "cards": []
     },
     {
       "id": "r08",
