@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-05",
+  "updated": "2026-11-09",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -713,43 +713,53 @@
   "table": [
     {
       "team": "Spartak Luban TJ",
-      "played": 7,
-      "won": 7,
+      "played": 8,
+      "won": 8,
       "drawn": 0,
       "lost": 0,
-      "gf": 60,
-      "ga": 20,
-      "points": 14
+      "gf": 66,
+      "ga": 21,
+      "points": 16
     },
     {
       "team": "Piemonte Calcio",
-      "played": 7,
-      "won": 5,
+      "played": 8,
+      "won": 6,
       "drawn": 1,
       "lost": 1,
-      "gf": 37,
+      "gf": 41,
       "ga": 11,
-      "points": 11
+      "points": 13
     },
     {
       "team": "Beránci FC",
+      "played": 8,
+      "won": 6,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 47,
+      "ga": 21,
+      "points": 12
+    },
+    {
+      "team": "Kotva FC",
       "played": 7,
       "won": 5,
       "drawn": 0,
       "lost": 2,
-      "gf": 41,
-      "ga": 21,
+      "gf": 27,
+      "ga": 20,
       "points": 10
     },
     {
-      "team": "Kotva FC",
-      "played": 6,
-      "won": 5,
-      "drawn": 0,
-      "lost": 1,
-      "gf": 26,
-      "ga": 14,
-      "points": 10
+      "team": "Inter Hostivař",
+      "played": 7,
+      "won": 3,
+      "drawn": 1,
+      "lost": 3,
+      "gf": 25,
+      "ga": 12,
+      "points": 7
     },
     {
       "team": "Taverners FC",
@@ -760,16 +770,6 @@
       "gf": 29,
       "ga": 22,
       "points": 7
-    },
-    {
-      "team": "Inter Hostivař",
-      "played": 6,
-      "won": 2,
-      "drawn": 1,
-      "lost": 3,
-      "gf": 17,
-      "ga": 12,
-      "points": 5
     },
     {
       "team": "Železní sokoli 1.FC",
@@ -783,32 +783,32 @@
     },
     {
       "team": "Poloukes FC",
-      "played": 7,
+      "played": 8,
       "won": 2,
       "drawn": 1,
-      "lost": 4,
+      "lost": 5,
       "gf": 17,
-      "ga": 27,
+      "ga": 31,
       "points": 5
     },
     {
       "team": "Efficenza AC",
-      "played": 6,
-      "won": 2,
-      "drawn": 0,
-      "lost": 4,
-      "gf": 10,
-      "ga": 23,
-      "points": 4
-    },
-    {
-      "team": "Nejasná identita 1.HK",
       "played": 7,
       "won": 2,
       "drawn": 0,
       "lost": 5,
+      "gf": 10,
+      "ga": 29,
+      "points": 4
+    },
+    {
+      "team": "Nejasná identita 1.HK",
+      "played": 8,
+      "won": 2,
+      "drawn": 0,
+      "lost": 6,
       "gf": 15,
-      "ga": 31,
+      "ga": 39,
       "points": 4
     },
     {
