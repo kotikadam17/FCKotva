@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-10",
+  "updated": "2026-11-12",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -39,7 +39,7 @@
       "study": "",
       "instagram": "@kyselina1",
       "bio": "",
-      "apps": 5,
+      "apps": 6,
       "goals": 0,
       "previous": {
         "apps": 11,
@@ -58,8 +58,8 @@
       "study": "",
       "instagram": "@hejdukino",
       "bio": "",
-      "apps": 5,
-      "goals": 8,
+      "apps": 6,
+      "goals": 9,
       "previous": {
         "apps": 11,
         "goals": 7
@@ -76,7 +76,7 @@
       "study": "",
       "instagram": "@matej_hykrda",
       "bio": "",
-      "apps": 6,
+      "apps": 7,
       "goals": 4,
       "previous": {
         "apps": 11,
@@ -94,7 +94,7 @@
       "study": "",
       "instagram": "",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 3,
       "previous": {
         "apps": 5,
@@ -112,7 +112,7 @@
       "study": "",
       "instagram": "@tomas_kollert",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 3,
       "previous": {
         "apps": 9,
@@ -130,7 +130,7 @@
       "study": "",
       "instagram": "@_kotikadam",
       "bio": "",
-      "apps": 5,
+      "apps": 6,
       "goals": 3,
       "previous": {
         "apps": 9,
@@ -148,7 +148,7 @@
       "study": "",
       "instagram": "@misapihera",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 1,
       "previous": {
         "apps": 7,
@@ -166,7 +166,7 @@
       "study": "",
       "instagram": "@rat11y",
       "bio": "",
-      "apps": 1,
+      "apps": 2,
       "goals": 1,
       "previous": {
         "apps": 3,
@@ -202,7 +202,7 @@
       "study": "",
       "instagram": "@maty.klapa",
       "bio": "",
-      "apps": 3,
+      "apps": 4,
       "goals": 1,
       "previous": {
         "apps": 10,
@@ -220,7 +220,7 @@
       "study": "",
       "instagram": "@vojta_polacekk",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 0,
       "previous": {
         "apps": 6,
@@ -238,7 +238,7 @@
       "study": "",
       "instagram": "@_martinszanto_",
       "bio": "",
-      "apps": 3,
+      "apps": 4,
       "goals": 2,
       "previous": {
         "apps": 11,
@@ -256,7 +256,7 @@
       "study": "",
       "instagram": "@honza_zuzanek",
       "bio": "",
-      "apps": 2,
+      "apps": 3,
       "goals": 0,
       "previous": {
         "apps": 5,
@@ -623,10 +623,39 @@
       "awayColors": [
         "oranžová"
       ],
-      "score": null,
-      "halftime": null,
-      "scorers": [],
-      "report": ""
+      "score": [
+        1,
+        6
+      ],
+      "halftime": [
+        0,
+        3
+      ],
+      "scorers": [
+        {
+          "player": "ondrej-hejduk",
+          "minute": 41
+        }
+      ],
+      "report": "Hosté byli v pohledném kombinančním zápase lepším týmem.",
+      "goalkeeper": "petr-pihera",
+      "best": "ondrej-hejduk",
+      "lineup": [
+        "petr-pihera",
+        "ondrej-hejduk",
+        "matej-hykrda",
+        "ludek-imramovsky",
+        "matyas-klapa",
+        "tomas-kollert",
+        "adam-kotik",
+        "michal-pihera",
+        "vojtech-polacek",
+        "lukas-rataj",
+        "martin-szanto",
+        "jan-zuzanek"
+      ],
+      "captain": "martin-szanto",
+      "cards": []
     },
     {
       "id": "r09",
