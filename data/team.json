@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-16",
+  "updated": "2026-11-18",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -742,22 +742,22 @@
   "table": [
     {
       "team": "Spartak Luban TJ",
-      "played": 8,
-      "won": 8,
+      "played": 9,
+      "won": 9,
       "drawn": 0,
       "lost": 0,
-      "gf": 66,
-      "ga": 21,
-      "points": 16
+      "gf": 71,
+      "ga": 24,
+      "points": 18
     },
     {
       "team": "Piemonte Calcio",
-      "played": 8,
+      "played": 9,
       "won": 6,
       "drawn": 1,
-      "lost": 1,
-      "gf": 41,
-      "ga": 11,
+      "lost": 2,
+      "gf": 44,
+      "ga": 16,
       "points": 13
     },
     {
@@ -772,13 +772,13 @@
     },
     {
       "team": "Kotva FC",
-      "played": 7,
-      "won": 5,
+      "played": 8,
+      "won": 6,
       "drawn": 0,
       "lost": 2,
-      "gf": 27,
-      "ga": 20,
-      "points": 10
+      "gf": 30,
+      "ga": 22,
+      "points": 12
     },
     {
       "team": "Inter Hostivař",
@@ -792,12 +792,12 @@
     },
     {
       "team": "Taverners FC",
-      "played": 8,
+      "played": 9,
       "won": 4,
       "drawn": 1,
-      "lost": 3,
-      "gf": 35,
-      "ga": 23,
+      "lost": 4,
+      "gf": 37,
+      "ga": 26,
       "points": 9
     },
     {
