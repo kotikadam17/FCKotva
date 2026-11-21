@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-18",
+  "updated": "2026-11-21",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -39,7 +39,7 @@
       "study": "",
       "instagram": "@kyselina1",
       "bio": "",
-      "apps": 6,
+      "apps": 7,
       "goals": 0,
       "previous": {
         "apps": 11,
@@ -58,7 +58,7 @@
       "study": "",
       "instagram": "@hejdukino",
       "bio": "",
-      "apps": 6,
+      "apps": 7,
       "goals": 9,
       "previous": {
         "apps": 11,
@@ -76,7 +76,7 @@
       "study": "",
       "instagram": "@matej_hykrda",
       "bio": "",
-      "apps": 7,
+      "apps": 8,
       "goals": 4,
       "previous": {
         "apps": 11,
@@ -94,7 +94,7 @@
       "study": "",
       "instagram": "",
       "bio": "",
-      "apps": 5,
+      "apps": 6,
       "goals": 3,
       "previous": {
         "apps": 5,
@@ -112,8 +112,8 @@
       "study": "",
       "instagram": "@tomas_kollert",
       "bio": "",
-      "apps": 5,
-      "goals": 3,
+      "apps": 6,
+      "goals": 5,
       "previous": {
         "apps": 9,
         "goals": 3
@@ -130,8 +130,8 @@
       "study": "",
       "instagram": "@_kotikadam",
       "bio": "",
-      "apps": 6,
-      "goals": 3,
+      "apps": 7,
+      "goals": 4,
       "previous": {
         "apps": 9,
         "goals": 9
@@ -148,7 +148,7 @@
       "study": "",
       "instagram": "@misapihera",
       "bio": "",
-      "apps": 5,
+      "apps": 6,
       "goals": 1,
       "previous": {
         "apps": 7,
@@ -238,7 +238,7 @@
       "study": "",
       "instagram": "@_martinszanto_",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 2,
       "previous": {
         "apps": 11,
@@ -672,10 +672,43 @@
         "černá",
         "bílá"
       ],
-      "score": null,
-      "halftime": null,
-      "scorers": [],
-      "report": ""
+      "score": [
+        2,
+        3
+      ],
+      "halftime": [
+        1,
+        1
+      ],
+      "scorers": [
+        {
+          "player": "tomas-kollert",
+          "minute": 19
+        },
+        {
+          "player": "adam-kotik",
+          "minute": 46
+        },
+        {
+          "player": "tomas-kollert",
+          "minute": 52
+        }
+      ],
+      "report": "Utkání by slušela remíza, nakonec se ale z těsného vítězství radovala Kotva.",
+      "goalkeeper": "petr-pihera",
+      "best": "tomas-kollert",
+      "lineup": [
+        "petr-pihera",
+        "ondrej-hejduk",
+        "matej-hykrda",
+        "ludek-imramovsky",
+        "tomas-kollert",
+        "adam-kotik",
+        "michal-pihera",
+        "martin-szanto"
+      ],
+      "captain": "martin-szanto",
+      "cards": []
     },
     {
       "id": "r10",
