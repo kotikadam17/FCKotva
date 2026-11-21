@@ -785,13 +785,13 @@
     },
     {
       "team": "Piemonte Calcio",
-      "played": 9,
-      "won": 6,
+      "played": 10,
+      "won": 7,
       "drawn": 1,
       "lost": 2,
-      "gf": 44,
+      "gf": 50,
       "ga": 16,
-      "points": 13
+      "points": 15
     },
     {
       "team": "Beránci FC",
@@ -825,12 +825,12 @@
     },
     {
       "team": "Taverners FC",
-      "played": 9,
+      "played": 10,
       "won": 4,
       "drawn": 1,
-      "lost": 4,
+      "lost": 5,
       "gf": 37,
-      "ga": 26,
+      "ga": 32,
       "points": 9
     },
     {
