@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-23",
+  "updated": "2026-11-24",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -775,12 +775,12 @@
   "table": [
     {
       "team": "Spartak Luban TJ",
-      "played": 9,
+      "played": 10,
       "won": 9,
       "drawn": 0,
-      "lost": 0,
+      "lost": 1,
       "gf": 71,
-      "ga": 24,
+      "ga": 34,
       "points": 18
     },
     {
@@ -794,6 +794,16 @@
       "points": 15
     },
     {
+      "team": "Kotva FC",
+      "played": 9,
+      "won": 7,
+      "drawn": 0,
+      "lost": 2,
+      "gf": 37,
+      "ga": 24,
+      "points": 14
+    },
+    {
       "team": "Beránci FC",
       "played": 10,
       "won": 6,
@@ -804,24 +814,14 @@
       "points": 13
     },
     {
-      "team": "Kotva FC",
-      "played": 8,
-      "won": 6,
-      "drawn": 0,
-      "lost": 2,
-      "gf": 30,
-      "ga": 22,
-      "points": 12
-    },
-    {
       "team": "Inter Hostivař",
-      "played": 8,
-      "won": 4,
+      "played": 9,
+      "won": 5,
       "drawn": 1,
       "lost": 3,
-      "gf": 30,
+      "gf": 40,
       "ga": 14,
-      "points": 9
+      "points": 11
     },
     {
       "team": "Taverners FC",
@@ -855,12 +855,12 @@
     },
     {
       "team": "Železní sokoli 1.FC",
-      "played": 8,
+      "played": 9,
       "won": 1,
       "drawn": 4,
-      "lost": 3,
-      "gf": 17,
-      "ga": 31,
+      "lost": 4,
+      "gf": 19,
+      "ga": 38,
       "points": 6
     },
     {
