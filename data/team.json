@@ -1,5 +1,5 @@
 {
-  "updated": "2026-11-24",
+  "updated": "2026-11-25",
   "team": {
     "name": "FC Kotva",
     "psmfName": "Kotva FC",
@@ -58,7 +58,7 @@
       "study": "",
       "instagram": "@hejdukino",
       "bio": "",
-      "apps": 7,
+      "apps": 8,
       "goals": 9,
       "previous": {
         "apps": 11,
@@ -76,7 +76,7 @@
       "study": "",
       "instagram": "@matej_hykrda",
       "bio": "",
-      "apps": 8,
+      "apps": 9,
       "goals": 4,
       "previous": {
         "apps": 11,
@@ -94,7 +94,7 @@
       "study": "",
       "instagram": "",
       "bio": "",
-      "apps": 6,
+      "apps": 7,
       "goals": 3,
       "previous": {
         "apps": 5,
@@ -112,8 +112,8 @@
       "study": "",
       "instagram": "@tomas_kollert",
       "bio": "",
-      "apps": 6,
-      "goals": 5,
+      "apps": 7,
+      "goals": 6,
       "previous": {
         "apps": 9,
         "goals": 3
@@ -130,8 +130,8 @@
       "study": "",
       "instagram": "@_kotikadam",
       "bio": "",
-      "apps": 7,
-      "goals": 4,
+      "apps": 8,
+      "goals": 6,
       "previous": {
         "apps": 9,
         "goals": 9
@@ -202,7 +202,7 @@
       "study": "",
       "instagram": "@maty.klapa",
       "bio": "",
-      "apps": 4,
+      "apps": 5,
       "goals": 1,
       "previous": {
         "apps": 10,
@@ -220,7 +220,7 @@
       "study": "",
       "instagram": "@vojta_polacekk",
       "bio": "",
-      "apps": 5,
+      "apps": 6,
       "goals": 0,
       "previous": {
         "apps": 6,
@@ -238,8 +238,8 @@
       "study": "",
       "instagram": "@_martinszanto_",
       "bio": "",
-      "apps": 5,
-      "goals": 2,
+      "apps": 6,
+      "goals": 3,
       "previous": {
         "apps": 11,
         "goals": 12
@@ -256,8 +256,8 @@
       "study": "",
       "instagram": "@honza_zuzanek",
       "bio": "",
-      "apps": 3,
-      "goals": 0,
+      "apps": 4,
+      "goals": 3,
       "previous": {
         "apps": 5,
         "goals": 2
@@ -725,10 +725,60 @@
         "černá",
         "bílá"
       ],
-      "score": null,
-      "halftime": null,
-      "scorers": [],
-      "report": ""
+      "score": [
+        2,
+        7
+      ],
+      "halftime": [
+        1,
+        2
+      ],
+      "scorers": [
+        {
+          "player": "martin-szanto",
+          "minute": 5
+        },
+        {
+          "player": "adam-kotik",
+          "minute": 6
+        },
+        {
+          "player": "jan-zuzanek",
+          "minute": 41
+        },
+        {
+          "player": "jan-zuzanek",
+          "minute": 49
+        },
+        {
+          "player": "tomas-kollert",
+          "minute": 52
+        },
+        {
+          "player": "adam-kotik",
+          "minute": 57
+        },
+        {
+          "player": "jan-zuzanek",
+          "minute": 60
+        }
+      ],
+      "report": "Za hustého deště se do poločasu hrál celkem vyrovnaný zápas, ale poté Kotva prokázala své kvality a zaslouženě vyhrála vysokým rozdílem.",
+      "goalkeeper": "ludek-imramovsky",
+      "best": "jan-zuzanek",
+      "lineup": [
+        "ludek-imramovsky",
+        "ondrej-hejduk",
+        "matej-hykrda",
+        "matyas-klapa",
+        "tomas-kollert",
+        "adam-kotik",
+        "vojtech-polacek",
+        "martin-szanto",
+        "jan-zuzanek"
+      ],
+      "captain": "martin-szanto",
+      "cards": []
     },
     {
       "id": "r01",
